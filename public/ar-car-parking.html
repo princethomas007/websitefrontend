@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AR Car Parking | Rextech Studios</title>
+<meta content="AR Car Parking - A smart and safe parking solution using Augmented Reality." name="description"/>
+<!-- Local favicon -->
+<link class="fav-icon" href="assets/favicon.png" rel="icon"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;900&amp;family=DM+Sans:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Main stylesheet -->
+<link href="assets/style.css" rel="stylesheet"/>
+<style>
+    /* Page specific styles */
+    .ar-page {
+      background: #000;
+      color: var(--white);
+      min-height: 100vh;
+      padding-top: 100px; /* offset for nav */
+    }
+
+    .ar-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    /* Top Hero Grid */
+    .ar-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+
+    .ar-hero h1 {
+      font-size: 80px;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      font-weight: 700;
+    }
+
+    .ar-info-card {
+      background: #0a0514; /* very dark subtle purple tint */
+      border: 1px solid rgba(129, 74, 200, 0.2);
+      border-radius: 24px;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .ar-info-row {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 24px;
+    }
+    
+    .ar-info-card .category-label {
+      font-family: var(--fh);
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 8px;
+    }
+
+    .ar-info-card .category-value {
+      font-family: var(--fh);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .ar-info-card .btn-view {
+      background: #814ac8;
+      color: var(--white);
+      font-family: var(--fh);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      text-align: center;
+      transition: background 0.3s;
+      align-self: flex-start;
+      text-decoration: none;
+    }
+
+    .ar-info-card .btn-view:hover {
+      background: #6a3aab;
+    }
+
+    /* Main Image */
+    .ar-main-image {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 80px;
+      display: block;
+      border-radius: 24px;
+    }
+
+    /* Content Cards Stack */
+    .ar-content-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .ar-content-card {
+      background: #080808;
+      border: 1px solid rgba(129, 74, 200, 0.15);
+      border-radius: 24px;
+      padding: 50px;
+    }
+
+    .ar-content-card h3 {
+      font-family: var(--fh);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .ar-content-card p {
+      font-family: var(--fh);
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    @media(max-width: 800px) {
+      .ar-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .ar-info-card {
+        margin: 0 auto;
+      }
+      .ar-hero h1 {
+        font-size: 56px;
+      }
+      .ar-content-card {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body class="ar-page">
+<!-- NAV -->
+<nav class="nav">
+<a href="index.html"><img alt="Rextech Studios" class="nav-logo" src="assets/images/rextech png logo for web.png"/></a>
+<ul class="nav-links">
+<div class="nav-indicator"></div>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="blog.html">Blog</a></li>
+<li><a href="portfolio.html">Portfolio</a></li>
+<li><a href="courses.html">Courses</a></li>
+</ul>
+<a class="nav-cta" href="contact.html">Contact Us</a>
+<button aria-label="Menu" class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="blog.html">Blog</a>
+<a href="portfolio.html">Portfolio</a>
+<a href="courses.html">Courses</a>
+<a class="mob-cta" href="contact.html">Contact Us</a>
+</div>
+<div class="ar-container">
+<!-- HERO -->
+<div class="ar-hero">
+<h1 class="reveal-left rd1 hero-custom-title" style="opacity:1 !important; transform:none !important; filter:none !important; animation:none !important;"><span class="hero-word" style="animation-delay: 1.30s;">AR</span> <span class="hero-word" style="animation-delay: 1.35s;">Car</span> <br/><span class="hero-word" style="animation-delay: 1.40s;">Parking</span> </h1>
+<div class="ar-info-card reveal-right rd2">
+<div class="ar-info-row">
+<div class="category-label">Category</div>
+<div class="category-value">AR/VR</div>
+</div>
+<a class="btn-view" href="#">View</a>
+</div>
+</div>
+<!-- MAIN IMAGE -->
+<img alt="AR Car Parking" class="ar-main-image reveal rd3" src="./assets/images/ar-car-parking.png"/>
+<!-- CONTENT CARDS -->
+<div class="ar-content-stack">
+<!-- Challenges Card -->
+<div class="ar-content-card reveal-left rd1">
+<h3>Challenges</h3>
+<p>There is a growing need for an immersive driving simulation that closely mirrors real-world physics to make learning practical and meaningful. Many traditional driving games lack realistic interaction, especially when it comes to essential skills like parking, reversing, and maneuvering in tight spaces. Without accurate feedback, learners struggle to develop confidence and precision. A major challenge is effectively conveying car size, turning radius, and blind spots, which are critical for real-world driving but difficult to represent in simplified environments. Players often misjudge distances and angles, leading to habits that do not translate well outside the game. Traditional 2D driving games further limit learning by failing to provide true depth and spatial awareness, reducing the experience to surface-level control rather than realistic understanding. These flat representations cannot replicate how drivers perceive space, movement, and obstacles in real life. To truly support skill development, simulations must offer realistic physics, depth perception, and interactive environments. By doing so, learners can safely practice, build muscle memory, and gain a deeper understanding of vehicle behavior, resulting in better preparedness and confidence for real-world driving scenarios.</p>
+</div>
+<!-- Solutions Card -->
+<div class="ar-content-card reveal-right rd2">
+<h3>Solutions</h3>
+<p>An immersive AR experience bridges virtual and physical spaces, allowing users to practice driving skills within their real-world environment. Realistic steering and gear overlays provide true-to-life control, helping users understand vehicle behavior and build muscle memory naturally. Full-scale and tabletop modes support better spatial understanding by letting users view vehicles at real size or in a scaled-down perspective for learning maneuvers and layouts. Markerless AR enables precise, real-world tracking, ensuring a stable and realistic simulation.</p>
+</div>
+</div>
+</div>
+<!-- FOOTER -->
+<footer style="margin-top: 80px;">
+<div class="footer-top">
+<div>
+<img alt="Rextech Studios" class="footer-logo" src="assets/images/rextech png logo for web.png"/>
+<p class="footer-tagline">Building next-generation games, AR/VR, and apps from India.</p>
+</div>
+<div class="footer-cols">
+<div class="footer-col">
+<h4>Pages</h4>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="portfolio.html">Portfolio</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Social</h4>
+<ul>
+<li><a href="https://x.com/RextechStu4530" rel="noopener" target="_blank">Twitter (X)</a></li>
+<li><a href="https://www.instagram.com/rextech_studios/" rel="noopener" target="_blank">Instagram</a></li>
+<li><a href="https://www.youtube.com/@Rextechstudiosofficial" rel="noopener" target="_blank">YouTube</a>
+</li>
+<li><a href="https://www.linkedin.com/company/rextech-studios/" rel="noopener" target="_blank">LinkedIn</a>
+</li>
+<li><a href="https://www.facebook.com/people/Rextech-Studios/61557573849165/" rel="noopener" target="_blank">Facebook</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Contact Us</h4>
+<div class="footer-contact">
+<p><a href="tel:+919562965493">+91 95629 65493</a></p>
+<p><a href="mailto:info@rextechstudios.com">info@rextechstudios.com</a></p>
+<p>Vismaya 8th Floor, AVGC Arena,<br/>Phase 1 Infopark, Kakkanad<br/>Ernakulam, Kerala 682042 India</p>
+</div>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<span class="footer-copy">India, Australia | Serving Clients Worldwide</span>
+<span class="footer-rights">© 2023–2026 All rights reserved</span>
+</div>
+</footer>
+<script src="assets/main.js"></script>
+</body>
+</html>

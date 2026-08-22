@@ -1,0 +1,11 @@
+[build]
+  publish = "public"
+
+# Keep URLs as /about.html instead of Netlify's default /about.
+# The nav indicator normalises both forms, but this keeps local and
+# production paths identical.
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = false

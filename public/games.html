@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Development | Rextech Studios</title>
+  <meta name="description" content="Engaging 2D/3D game development using Unity, Unreal, and C# by Rextech Studios.">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-35PN29619F"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-35PN29619F');</script>
+  <style>
+    .sp-hero {
+      min-height: 100vh;
+      background: #000;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 120px 80px 80px;
+      gap: 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .sp-hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .sp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fb);
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .sp-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #814ac8;
+    }
+
+    .sp-hero-left h1 {
+      font-family: var(--fh);
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin: 0;
+      animation: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+    }
+
+    .sp-hero-left h1 .accent {
+      background: linear-gradient(90deg, #814ac8, #df7afe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sp-hero-left p {
+      font-family: var(--fb);
+      font-size: 17px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0;
+    }
+
+    .sp-hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sp-hero-right img {
+      width: 100%;
+      max-width: 580px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 20px;
+    }
+
+    .sp-details {
+      background: var(--black);
+      padding: 80px 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .sp-points-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .sp-point-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      padding: 32px 28px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .sp-point-card:hover {
+      border-color: rgba(129,74,200,0.4);
+      background: rgba(129,74,200,0.05);
+    }
+
+    .sp-point-card h3 {
+      font-family: var(--fh);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--white);
+      margin: 0 0 10px;
+      letter-spacing: -0.2px;
+    }
+
+    .sp-point-card p {
+      font-family: var(--fb);
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+   .projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:30px;
+    margin-top:40px;
+}
+
+.projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:30px;
+    margin-top:40px;
+}
+
+.project-card{
+    background:#111;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    transition:all .3s ease;
+}
+
+.project-card:hover{
+    transform:translateY(-6px);
+    border-color:#814ac8;
+    box-shadow:0 15px 35px rgba(129,74,200,.15);
+}
+
+.project-image{
+    width:100%;
+    height:240px;
+    overflow:hidden;
+}
+
+.project-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .35s ease;
+    object-position: center;
+}
+
+.project-card:hover .project-image img{
+    transform:scale(1.03);
+}
+
+.project-content{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    padding:24px;
+}
+
+.project-category{
+    display:inline-block;
+    width:fit-content;
+    padding:6px 12px;
+    background:rgba(129,74,200,.15);
+    color:#c58cff;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:600;
+    margin-bottom:16px;
+}
+
+.project-content h2{
+    color:#fff;
+    font-size:28px;
+    font-weight:600;
+    line-height:1.35;
+    margin:0;
+    min-height:76px;
+}
+
+.project-btn{
+    margin-top:auto;
+    padding-top:22px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:#4DA3FF;
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    transition:all .3s ease;
+}
+
+.project-btn:hover{
+    color:#79BDFF;
+    transform:translateX(5px);
+}
+
+@media(max-width:768px){
+
+    .projects-grid{
+        grid-template-columns:1fr;
+    }
+
+    .project-image{
+        height:220px;
+    }
+
+    .project-content{
+        padding:20px;
+    }
+
+    .project-content h2{
+        font-size:24px;
+        min-height:auto;
+    }
+}
+
+    @media (max-width: 900px) {
+      .sp-hero {
+        grid-template-columns: 1fr;
+        padding: 100px 32px 60px;
+        min-height: auto;
+        gap: 40px;
+      }
+      .sp-hero-right {
+        order: -1;
+      }
+      .sp-hero-right img {
+        max-width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+      }
+      .sp-details {
+        padding: 60px 32px;
+      }
+      .sp-points-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sp-hero { padding: 90px 20px 48px; }
+      .sp-details { padding: 48px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html"><img src="assets/images/rextech png logo for web.png" alt="Rextech Studios" class="nav-logo"></a>
+    <ul class="nav-links">
+      <div class="nav-indicator"></div>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="courses.html">Courses</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Contact Us</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="courses.html">Courses</a>
+    <a href="contact.html" class="mob-cta">Contact Us</a>
+  </div>
+
+  <!-- HERO -->
+  <div style="background:#000">
+    <div class="sp-hero">
+      <div class="sp-hero-left">
+        <div class="sp-badge"><span class="sp-badge-dot"></span>Our Work</div>
+        <h1>Build Games That <span class="accent">Players Love</span></h1>
+        <p>We create immersive 2D and 3D games with rich visuals and smooth mechanics, built using Unity, Unreal, and C# to deliver engaging player experiences.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="contact.html" class="btn btn-primary">Start Project</a>
+          <a href="portfolio.html" class="btn btn-secondary">Back to Portfolio</a>
+        </div>
+      </div>
+      <div class="sp-hero-right">
+        <img src="assets/images/game over for portfolio.png" alt="Game Development">
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--black)">
+    <div class="sp-details">
+      <div style="text-align:center;">
+        <div class="section-badge">Projects</div>
+      </div>
+        <h2 class="section-title">
+            Game Development Projects
+        </h2>
+
+        <div id="dynamicProjects" class="projects-grid"></div>
+
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <section style="background:var(--black)">
+    <div class="sp-details">
+      <div style="text-align:center;">
+       <div class="section-badge">What We Deliver</div>
+      </div>
+      <h2 class="section-title" style="margin-top:12px">Game Development Capabilities</h2>
+      <div class="sp-points-grid">
+        <div class="sp-point-card">
+          <h3>Next Gen AR/VR Game Experiences</h3>
+          <p>Games that push the boundaries of immersion using the latest AR and VR technologies on mobile and headsets.</p>
+        </div>
+        <div class="sp-point-card">
+          <h3>Realistic Physics &amp; Interaction</h3>
+          <p>Deep physics systems and responsive interactions that make every gameplay moment feel natural and satisfying.</p>
+        </div>
+        <div class="sp-point-card">
+          <h3>Optimized for Headsets &amp; Mobile</h3>
+          <p>Performance-tuned builds that run smoothly across VR headsets, iOS, Android, and desktop platforms.</p>
+        </div>
+        <div class="sp-point-card">
+          <h3>Scalable Multiplayer Ready Worlds</h3>
+          <p>Networked game architectures designed to scale from local play to thousands of concurrent online players.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm" style="background:var(--black)">
+    <div class="cta-box reveal">
+      <h2>Ready to Build Your Game?</h2>
+      <p>Let's bring your game concept to life with stunning visuals and rock-solid mechanics.</p>
+      <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <img src="assets/images/rextech png logo for web.png" alt="Rextech Studios" class="footer-logo">
+        <p class="footer-tagline">Building next-generation games, AR/VR, and apps from India.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Social</h4>
+          <ul>
+            <li><a href="https://x.com/RextechStu4530" target="_blank" rel="noopener">Twitter (X)</a></li>
+            <li><a href="https://www.instagram.com/rextech_studios/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.youtube.com/@Rextechstudiosofficial" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://www.linkedin.com/company/rextech-studios/" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="footer-contact">
+            <p><a href="tel:+919562965493">+91 95629 65493</a></p>
+            <p><a href="mailto:info@rextechstudios.com">info@rextechstudios.com</a></p>
+            <p>Vismaya 8th Floor, AVGC Arena,<br>Phase 1 Infopark, Kakkanad<br>Ernakulam, Kerala 682042 India</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">India, Australia | Serving Clients Worldwide</span>
+      <span class="footer-rights">© 2023–2026 All rights reserved</span>
+    </div>
+  </footer>
+  <script src="assets/main.js"></script>
+  <script>
+fetch("https://rextech-django-production.up.railway.app")
+.then(res => res.json())
+.then(data => {
+
+    const container = document.getElementById("dynamicProjects");
+
+    // Show only Game projects
+    const gameProjects = data.filter(project => project.category === "GAME");
+
+    gameProjects.forEach(project => {
+
+        container.innerHTML += `
+        <div class="project-card">
+
+            <div class="project-image">
+                <img src="https://rextech-django-production.up.railway.app${project.cover_image}" alt="${project.title}">
+            </div>
+
+            <div class="project-content">
+              <span class="project-category">${project.category}</span>
+
+                <h2>${project.title}</h2>
+
+                <a href="project-detail.html?id=${project.id}" class="project-btn">
+    View Project →
+</a>
+
+            </div>
+
+        </div>`
+        ;
+
+    });
+
+});
+</script>
+</body>
+</html>

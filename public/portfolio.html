@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio | Rextech Studios</title>
+<meta content="Explore Rextech Studios' portfolio of AR/VR, game, and mobile app projects." name="description"/>
+<!-- Local favicon -->
+<link class="fav-icon" href="assets/favicon.png" rel="icon"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;900&amp;family=DM+Sans:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Main stylesheet -->
+<link href="assets/style.css" rel="stylesheet"/>
+<!-- Google Tag Manager -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-35PN29619F"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-35PN29619F');
+  </script>
+<style>
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .filter-tab {
+      font-family: var(--fh);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--w75);
+      cursor: pointer;
+      transition: all .25s;
+      letter-spacing: -0.02em;
+    }
+
+    .filter-tab:hover,
+    .filter-tab.active {
+      background: var(--purple);
+      color: var(--white);
+      border-color: var(--purple);
+    }
+
+    /* ── AR/VR SHOWCASE CARD ── */
+    .arvr-showcase-card {
+      height: 420px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 32px;
+      background: rgba(255,255,255,0.03);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .arvr-showcase-card:hover {
+      border-color: rgba(129,74,200,0.5);
+      transform: translateY(-3px);
+    }
+
+    .arvr-showcase-left {
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: radial-gradient(ellipse at bottom center, #2a1a6e 0%, #0d0a1a 70%);
+    }
+
+    .arvr-showcase-title {
+      font-family: var(--fh);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.2px;
+      margin-bottom: 20px;
+    }
+
+    .arvr-showcase-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin-bottom: 28px;
+    }
+
+    .arvr-showcase-points {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .arvr-showcase-points li {
+      font-family: var(--fb);
+      font-size: 15px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: -0.1px;
+      line-height: 1.5;
+    }
+
+    .arvr-showcase-right {
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .arvr-showcase-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 768px) {
+      .arvr-showcase-card {
+        grid-template-columns: 1fr;
+      }
+      .arvr-showcase-right {
+        height: 260px;
+      }
+    }
+
+    /* =========================================
+       INTERACTIVE OFFERINGS GRID (Screenshot)
+       ========================================= */
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      background: #000;
+      position: relative;
+    }
+
+    .offer-box {
+      position: relative;
+      padding: 60px 40px;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      cursor: pointer;
+      transition: all 0.4s var(--ease);
+      border: 1px solid transparent;
+      overflow: hidden;
+      user-select: none;
+      z-index: 1;
+    }
+
+    /* Absolute background glow layer for fluid fade in/out animation */
+    .offer-bg-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top, rgba(129, 74, 200, 0.15) 0%, rgba(5, 5, 5, 0.98) 70%);
+      opacity: 0;
+      transition: opacity 0.6s var(--ease);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Absolute top glowing border line with scale expansion transition flow */
+    .offer-border-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #814ac8, #df7afe, #814ac8, transparent);
+      box-shadow: 0 0 15px rgba(223, 122, 254, 0.8), 0 0 5px rgba(223, 122, 254, 0.5);
+      opacity: 0;
+      transform: scaleX(0.4);
+      transform-origin: center;
+      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Inner grid lines layout */
+    .offer-box:nth-child(1),
+    .offer-box:nth-child(2),
+    .offer-box:nth-child(4),
+    .offer-box:nth-child(5) {
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .offer-box:nth-child(1),
+    .offer-box:nth-child(2),
+    .offer-box:nth-child(3) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Offer Icons and Content */
+    .offer-icon {
+      width: 22px;
+      height: 22px;
+      color: rgba(255, 255, 255, 0.4);
+      position: relative;
+      z-index: 2;
+      transition: color 0.5s var(--ease), transform 0.5s var(--ease);
+    }
+
+    .offer-box h3 {
+      font-family: var(--fh);
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: -0.2px;
+      position: relative;
+      z-index: 2;
+      transition: color 0.5s var(--ease);
+    }
+
+    .offer-box p {
+      font-family: var(--fb);
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.6;
+      max-width: 280px;
+      position: relative;
+      z-index: 2;
+      transition: color 0.5s var(--ease);
+    }
+
+    /* Active Glowing State trigger layers */
+    .offer-box.active .offer-bg-glow {
+      opacity: 1;
+    }
+
+    .offer-box.active .offer-border-glow {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .offer-box.active .offer-icon {
+      color: #df7afe;
+      transform: translateY(-2px);
+    }
+
+    .offer-box.active h3 {
+      color: var(--white);
+    }
+
+    .offer-box.active p {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Hover effect for unlit cards to feel responsive */
+    .offer-box:not(.active):hover {
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .offer-box:not(.active):hover .offer-icon {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .offer-box:not(.active):hover h3 {
+      color: var(--white);
+    }
+
+    /* Responsiveness */
+    @media(max-width: 884px) {
+      .offer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .offer-box {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        padding: 48px 24px;
+      }
+
+      .offer-box:last-child {
+        border-bottom: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<nav class="nav">
+<a href="index.html"><img alt="Rextech Studios" class="nav-logo" src="assets/images/rextech png logo for web.png"/></a>
+<ul class="nav-links">
+    <div class="nav-indicator"></div>
+
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="courses.html">Courses</a></li>
+</ul>
+<a class="nav-cta" href="contact.html">Contact Us</a>
+<button aria-label="Menu" class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="blog.html">Blog</a>
+<a href="portfolio.html">Portfolio</a>
+<a href="courses.html">Courses</a>
+<a class="mob-cta" href="contact.html">Contact Us</a>
+</div>
+<!-- HERO -->
+<div class="page-hero">
+<div class="page-hero-bg reveal"></div>
+<div class="page-hero-badge reveal rd1">Portfolio</div>
+<h1 class="hero-custom-title" style="opacity:1 !important; transform:none !important; filter:none !important; animation:none !important;"><span class="hero-word" style="animation-delay: 1.30s;">Explore</span> <span class="hero-word" style="animation-delay: 1.35s;">Our</span> <span class="hero-word" style="animation-delay: 1.40s;">Most</span> <br/><span class="hero-word" style="animation-delay: 1.45s;">Remarkable</span> <span class="hero-word" style="animation-delay: 1.50s;">Projects.</span> </h1>
+<p class="rd3 hero-custom-sub" style="opacity:1 !important; transform:none !important; filter:none !important; animation:none !important; margin-bottom: 30px;"><span class="hero-sub-word" style="animation-delay: 1.65s;">We</span> <span class="hero-sub-word" style="animation-delay: 1.70s;">craft</span> <span class="hero-sub-word" style="animation-delay: 1.75s;">customised</span> <span class="hero-sub-word" style="animation-delay: 1.80s;">solutions</span> <span class="hero-sub-word" style="animation-delay: 1.85s;">that</span> <span class="hero-sub-word" style="animation-delay: 1.90s;">empower</span> <span class="hero-sub-word" style="animation-delay: 1.95s;">both</span> <span class="hero-sub-word" style="animation-delay: 2.00s;">startups</span> <span class="hero-sub-word" style="animation-delay: 2.05s;">and</span> <span class="hero-sub-word" style="animation-delay: 2.10s;">established</span> <span class="hero-sub-word" style="animation-delay: 2.15s;">brands,</span> <span class="hero-sub-word" style="animation-delay: 2.20s;">driving</span> <span class="hero-sub-word" style="animation-delay: 2.25s;">success</span> <span class="hero-sub-word" style="animation-delay: 2.30s;">and</span> <span class="hero-sub-word" style="animation-delay: 2.35s;">delivering</span> <span class="hero-sub-word" style="animation-delay: 2.40s;">real</span> <span class="hero-sub-word" style="animation-delay: 2.45s;">impact.</span> </p>
+<div class="reveal rd4" style="margin-top:24px; transition-delay: 2.8s !important;">
+<a class="btn btn-primary hero-btn" href="contact.html">Build Your Product</a>
+</div>
+</div>
+<section class="section portfolio-section" style="background:var(--black)">
+<div style="max-width:1200px;margin:0 auto">
+<!-- Projects -->
+<div class="section-header reveal" style="transition-delay: 2.9s!important;">
+<div class="section-badge">Projects</div>
+</div>
+<!-- AR/VR showcase card (screenshot style) -->
+<div class="portfolio-cards reveal" style="transition-delay:0s !important;">
+<a class="arvr-showcase-card" href="arvr.html" style="text-decoration:none;color:inherit;cursor:pointer;display:grid;">
+<div class="arvr-showcase-left">
+<div class="arvr-showcase-title">AR/VR</div>
+<div class="arvr-showcase-divider"></div>
+<ul class="arvr-showcase-points">
+<li>Enterprise Grade AR/VR Solutions</li>
+<li>Customer Engagement Through Immersion</li>
+<li>Data Driven Interactive Experiences</li>
+<li>Scalable &amp; Secure Deployments</li>
+</ul>
+</div>
+<div class="arvr-showcase-right">
+<img alt="AR/VR" loading="lazy" src="assets/images/AR,VR laddy for portfolio page.png"/>
+</div>
+</a>
+<!-- Games showcase card -->
+<a class="arvr-showcase-card" href="games.html" style="text-decoration:none;color:inherit;cursor:pointer;display:grid;">
+<div class="arvr-showcase-left">
+<div class="arvr-showcase-title">Games</div>
+<div class="arvr-showcase-divider"></div>
+<ul class="arvr-showcase-points">
+<li>Next Gen AR/VR Game Experiences</li>
+<li>Realistic Physics &amp; Interaction</li>
+<li>Optimized for Headsets &amp; Mobile</li>
+<li>Scalable Multiplayer Ready Worlds</li>
+</ul>
+</div>
+<div class="arvr-showcase-right">
+<img alt="Games" loading="lazy" src="assets/images/game over for portfolio.png"/>
+</div>
+</a>
+<!-- Apps showcase card -->
+<a class="arvr-showcase-card" href="apps.html" style="text-decoration:none;color:inherit;cursor:pointer;display:grid;">
+<div class="arvr-showcase-left">
+<div class="arvr-showcase-title">Apps</div>
+<div class="arvr-showcase-divider"></div>
+<ul class="arvr-showcase-points">
+<li>Business Centric App Solutions</li>
+<li>Scalable Mobile Applications</li>
+<li>Data Secure Architecture</li>
+<li>Ready for Growth</li>
+</ul>
+</div>
+<div class="arvr-showcase-right">
+<img alt="Apps" loading="lazy" src="assets/images/app 1.jpeg"/>
+</div>
+</a>
+<a class="arvr-showcase-card" href="websites.html" style="text-decoration:none;color:inherit;cursor:pointer;display:grid;">
+
+    <div class="arvr-showcase-left">
+
+        <div class="arvr-showcase-title">Websites</div>
+
+        <div class="arvr-showcase-divider"></div>
+
+        <ul class="arvr-showcase-points">
+            <li>Modern Responsive Websites</li>
+            <li>Business & Portfolio Websites</li>
+            <li>SEO Optimized Development</li>
+            <li>Fast, Secure & Scalable Solutions</li>
+        </ul>
+
+    </div>
+
+    <div class="arvr-showcase-right">
+        <img src="assets/images/website_img1.jpg" alt="Website Development">
+    </div>
+
+</a>
+
+</div>
+</div>
+</section>
+<br/><br/>
+<!-- Category overview (Now What We Offer Glowing Interactive Grid with Energy Flow Transition) -->
+<div class="section-header reveal">
+<div class="section-badge">Offerings</div>
+<h2 class="section-title">Projects That Define Us</h2>
+</div>
+<div class="offer-grid reveal">
+<!-- Box 1 -->
+<div class="offer-box reveal rd1">
+<div class="offer-bg-glow"></div>
+<div class="offer-border-glow"></div>
+<svg class="offer-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<h3>Seamless Integration</h3>
+<p>Connect AI easily into your existing systems without disruption.</p>
+</div>
+<!-- Box 2 -->
+<div class="offer-box reveal rd2">
+<div class="offer-bg-glow"></div>
+<div class="offer-border-glow"></div>
+<svg class="offer-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<h3>Custom Solutions</h3>
+<p>AI tailored to match your unique business needs and workflows.</p>
+</div>
+<!-- Box 3 -->
+<div class="offer-box reveal rd3">
+<div class="offer-bg-glow"></div>
+<div class="offer-border-glow"></div>
+<svg class="offer-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<h3>Real-Time Insights</h3>
+<p>Instant analytics and recommendations to support smarter decisions.</p>
+</div>
+<!-- Box 4 -->
+<div class="offer-box reveal rd4">
+<div class="offer-bg-glow"></div>
+<div class="offer-border-glow"></div>
+<svg class="offer-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 3v17.25m0-17.25a3.75 3.75 0 1 1 3.75 3.75M12 3a3.75 3.75 0 1 0-3.75 3.75M12 20.25a3.75 3.75 0 1 1 3.75-3.75M12 20.25a3.75 3.75 0 1 0-3.75-3.75M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<h3>Scalable Architecture</h3>
+<p>Flexible solutions that grow as your business expands.</p>
+</div>
+<!-- Box 5 (Active by Default) -->
+<div class="offer-box active reveal rd1">
+<div class="offer-bg-glow"></div>
+<div class="offer-border-glow"></div>
+<svg class="offer-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<h3>Enhanced Security</h3>
+<p>Enterprise-grade protection to keep your data safe and compliant.</p>
+</div>
+<!-- Box 6 -->
+<div class="offer-box reveal rd2">
+<div class="offer-bg-glow"></div>
+<div class="offer-border-glow"></div>
+<svg class="offer-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.364 5.636A9 9 0 0 0 5.636 5.636m12.728 0A9 9 0 0 1 21 12v5.25c0 .621-.504 1.125-1.125 1.125H18a1.125 1.125 0 0 1-1.125-1.125v-3.00c0-.621.504-1.125 1.125-1.125h1.125M5.636 5.636A9 9 0 0 0 3 12v5.25c0 .621.504 1.125 1.125 1.125H6a1.125 1.125 0 0 1 1.125-1.125v-3.00C7.125 13.629 6.621 13.125 6 13.125H4.875" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<h3>Expert Support</h3>
+<p>End-to-end guidance from implementation to ongoing optimization.</p>
+</div>
+</div>
+<section class="section-sm" style="background:var(--black)">
+<div class="cta-box reveal">
+<h2>Have a Project in Mind?</h2>
+<p>Let's collaborate and build something extraordinary together.</p>
+<a class="btn btn-primary" href="contact.html">Start Building</a>
+</div>
+</section>
+<br><br>
+<!-- FOOTER -->
+<footer>
+<div class="footer-top">
+<div>
+<img alt="Rextech Studios" class="footer-logo" src="assets/images/rextech png logo for web.png"/>
+<p class="footer-tagline">Building next-generation games, AR/VR, and apps from India.</p>
+</div>
+<div class="footer-cols">
+<div class="footer-col">
+<h4>Pages</h4>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="portfolio.html">Portfolio</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Social</h4>
+<ul>
+<li><a href="https://x.com/RextechStu4530" rel="noopener" target="_blank">Twitter (X)</a></li>
+<li><a href="https://www.instagram.com/rextech_studios/" rel="noopener" target="_blank">Instagram</a></li>
+<li><a href="https://www.youtube.com/@Rextechstudiosofficial" rel="noopener" target="_blank">YouTube</a>
+</li>
+<li><a href="https://www.linkedin.com/company/rextech-studios/" rel="noopener" target="_blank">LinkedIn</a>
+</li>
+<li><a href="https://www.facebook.com/people/Rextech-Studios/61557573849165/" rel="noopener" target="_blank">Facebook</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Contact Us</h4>
+<div class="footer-contact">
+<p><a href="tel:+919562965493">+91 95629 65493</a></p>
+<p><a href="mailto:info@rextechstudios.com">info@rextechstudios.com</a></p>
+<p>Vismaya 8th Floor, AVGC Arena,<br/>Phase 1 Infopark, Kakkanad<br/>Ernakulam, Kerala 682042 India</p>
+</div>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<span class="footer-copy">India, Australia | Serving Clients Worldwide</span>
+<span class="footer-rights">© 2023–2026 All rights reserved</span>
+</div>
+</footer>
+<script src="assets/main.js"></script>
+<!-- Interactive JavaScript click toggle -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const boxes = document.querySelectorAll('.offer-box');
+      boxes.forEach(box => {
+        box.addEventListener('click', () => {
+          boxes.forEach(b => b.classList.remove('active'));
+          box.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
