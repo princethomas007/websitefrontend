@@ -164,6 +164,9 @@
       flex-direction: column;
       height: 100%;
       transition: all .3s ease;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
     }
 
     .project-card:hover {
@@ -452,25 +455,30 @@
         gameProjects.forEach(project => {
 
           container.innerHTML += `
-        <div class="project-card">
+            <a href="project-detail.html?id=${project.id}" class="project-card">
 
-            <div class="project-image">
-                <img src="https://rextech-django-production.up.railway.app${project.cover_image}" alt="${project.title}">
-            </div>
+              <div class="project-image">
+                <img
+                  src="https://rextech-django-production.up.railway.app${project.cover_image}"
+                  alt="${project.title}"
+                >
+              </div>
 
-            <div class="project-content">
-              <span class="project-category">${project.category}</span>
+              <div class="project-content">
+
+                <span class="project-category">
+                  ${project.category}
+                </span>
 
                 <h2>${project.title}</h2>
 
-                <a href="project-detail.html?id=${project.id}" class="project-btn">
-    View Project →
-</a>
+                <span class="project-btn">
+                  View Project →
+                </span>
 
-            </div>
+              </div>
 
-        </div>`
-            ;
+            </a>`;
 
         });
 
