@@ -1,14 +1,1094 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=public/index.html">
-  <title>Redirecting to Rextech Studios...</title>
-  <script>
-    window.location.replace("public/index.html");
-  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rextech Studios | AR/VR, Game & App Development</title>
+  <meta name="description"
+    content="Rextech Studios is a technology studio in India specializing in AR/VR, metaverse projects, mobile app and game development, and training courses through Rextech Academy.">
+  <meta property="og:title" content="Rextech Studios">
+  <meta property="og:description" content="Building next-generation AR/VR, Games, and Mobile Apps from India.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rextechstudios.com/">
+  <link rel="canonical" href="https://rextechstudios.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index,follow">
+  <meta name="google-site-verification" content="F4fZwxqrLdAJS6MoGtMfA1Qm9bzXRO7GR87tDu8I81c">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" href="./assets/images/framer-favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;900&family=DM+Sans:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-35PN29619F"></script>
+  <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-35PN29619F');</script>
+
+  <!-- Add styles for the canvas container, glassmorphism panel, and typing animations -->
+  <style>
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      /* Ensures the canvas always has a height */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 0;
+    }
+
+    #canvas-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      background: #050505;
+      pointer-events: none;
+      /* Matches the dark background of the sphere animation */
+    }
+
+    #canvas-container canvas {
+      width: 100% !important;
+      height: 100% !important;
+      opacity: 0;
+      transition: opacity 2s ease;
+      outline: none;
+    }
+
+    #canvas-container canvas.visible {
+      opacity: 1;
+    }
+
+    .glass-panel {
+      position: absolute;
+      width: clamp(200px, 50vw, 500px);
+      height: clamp(200px, 50vw, 500px);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+
+      border-radius: 50%;
+      z-index: 5;
+
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .glass-panel.visible {
+      opacity: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+
+      width: clamp(300px, 90vw, 900px);
+      height: clamp(300px, 50vw, 500px);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+    }
+
+    /* Typing Text Animation Classes */
+    .char {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(8px);
+      transition: opacity 0.2s ease, filter 0.2s ease;
+    }
+
+    .char.visible {
+      opacity: 1;
+      filter: blur(0);
+    }
+
+    .hero-custom-ctas {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      animation: heroCtaFadeIn 0.8s ease 3.5s both;
+    }
+
+    @keyframes heroCtaFadeIn {
+      from {
+        opacity: 0;
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    .hero-custom-title {
+      font-size: clamp(32px, 7vw, 72px);
+      line-height: 1.1;
+      font-weight: 700;
+      opacity: 0;
+      animation: fadeUp 1.2s var(--spring-ease) 0.4s forwards;
+    }
+
+    .hero-custom-sub {
+      font-size: clamp(14px, 3vw, 20px);
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.72);
+      opacity: 0;
+      animation: fadeUp 1.2s var(--spring-ease) 0.8s forwards;
+    }
+
+    .hero-badge {
+      font-size: clamp(12px, 2vw, 14px);
+      opacity: 0;
+      animation: fadeUp 1.2s var(--spring-ease) 0s forwards;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/css/intlTelInput.css">
+  <!-- Local Business Schema -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://rextechstudios.com/#business",
+  "name": "Rextech Studios Private Limited",
+  "url": "https://rextechstudios.com/",
+  "telephone": "+919562965493",
+  "email": "info@rextechstudios.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Vismaya, 8th Floor, AVGC Arena, Phase 1 Infopark",
+    "addressLocality": "Kakkanad",
+    "addressRegion": "Kerala",
+    "postalCode": "682042",
+    "addressCountry": "IN"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/people/Rextech-Studios/6155773849165/",
+    "https://www.instagram.com/rextech_studios/",
+    "https://www.linkedin.com/company/rextech-studios/"
+  ]
+}
+</script>
 </head>
+
 <body>
-  <p>If you are not redirected automatically, follow this <a href="public/index.html">link to public/index.html</a>.</p>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html"><img src="assets/images/rextech png logo for web.png" alt="Rextech Studios"
+        class="nav-logo"></a>
+    <ul class="nav-links">
+
+      <div class="nav-indicator"></div>
+
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="courses.html">Courses</a></li>
+
+    </ul>
+    <a href="contact.html" class="nav-cta">Contact Us</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="blog.html">Blog</a>
+    <a href="portfolio.html">Portfolio</a><a href="courses.html">Courses</a>
+    <a href="contact.html" class="mob-cta">Contact Us</a>
+  </div>
+
+  <section class="hero" id="home">
+
+    <div id="canvas-container"></div>
+
+    <!-- Glass panel -->
+    <div class="glass-panel"></div>
+
+    <!-- Text -->
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        AR/VR · Games · Mobile Apps
+      </div>
+
+      <h1 class="hero-custom-title"
+        style="opacity:1 !important; transform:none !important; filter:none !important; animation:none !important;">
+        <span class="hero-word" style="animation-delay:1.4s">Transforming</span>
+        <span class="hero-word" style="animation-delay:1.45s">Ideas</span>
+        <br>
+        <span class="hero-word" style="animation-delay:1.5s">Into</span>
+        <span class="hero-word" style="animation-delay:1.55s">Digital</span>
+        <span class="hero-word" style="animation-delay:1.6s">Realities</span>
+      </h1>
+
+      <p class="hero-custom-sub"
+        style="opacity:1 !important; transform:none !important; filter:none !important; animation:none !important; margin-bottom: 30px; line-height: 1.6; max-width: clamp(280px, 90vw, 650px); margin-left: auto; margin-right: auto;">
+        <span class="hero-sub-word" style="animation-delay:1.8s">At</span>
+        <span class="hero-sub-word" style="animation-delay:1.85s">Rextech</span>
+        <span class="hero-sub-word" style="animation-delay:1.9s">Studios,</span>
+        <span class="hero-sub-word" style="animation-delay:1.95s">we</span>
+        <span class="hero-sub-word" style="animation-delay:2.0s">create</span>
+        <span class="hero-sub-word" style="animation-delay:2.1s">next-generation</span>
+        <span class="hero-sub-word" style="animation-delay:2.12s">AR/VR,</span>
+        <span class="hero-sub-word" style="animation-delay:2.15s">Games,</span>
+        <span class="hero-sub-word" style="animation-delay:2.2s">and</span>
+        <span class="hero-sub-word" style="animation-delay:2.25s">Mobile</span>
+        <span class="hero-sub-word" style="animation-delay:2.3s">App</span>
+        <span class="hero-sub-word" style="animation-delay:2.35s">experiences.</span>
+        <span class="hero-sub-word" style="animation-delay:2.4s">With</span>
+        <span class="hero-sub-word" style="animation-delay:2.45s">a</span>
+        <span class="hero-sub-word" style="animation-delay:2.5s">team</span>
+        <span class="hero-sub-word" style="animation-delay:2.55s">of</span>
+        <span class="hero-sub-word" style="animation-delay:2.6s">passionate</span>
+        <span class="hero-sub-word" style="animation-delay:2.65s">experts,</span>
+        <span class="hero-sub-word" style="animation-delay:2.7s">we</span>
+        <span class="hero-sub-word" style="animation-delay:2.75s">deliver</span>
+        <span class="hero-sub-word" style="animation-delay:2.8s">innovative</span>
+        <span class="hero-sub-word" style="animation-delay:2.85s">products</span>
+        <span class="hero-sub-word" style="animation-delay:2.9s">for</span>
+        <span class="hero-sub-word" style="animation-delay:2.95s">startups</span>
+        <span class="hero-sub-word" style="animation-delay:3.0s">and</span>
+        <span class="hero-sub-word" style="animation-delay:3.05s">enterprises</span>
+        <span class="hero-sub-word" style="animation-delay:3.1s">worldwide.</span>
+      </p>
+
+      <div class="hero-ctas hero-custom-ctas" style="animation-delay:3.3s">
+        <a href="contact.html" class="btn btn-primary">Get in touch</a>
+        <a href="service.html" class="btn btn-secondary">Our Services</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services" style="background:var(--black)">
+    <div class="max-w">
+      <div class="section-header reveal">
+        <div class="section-badge">Our Services</div>
+        <h2 class="section-title">AR/VR, Games, Apps &amp; Tech Training<br>by Rextech Academy</h2>
+      </div>
+      <div class="services-list">
+        <!-- Item 1 -->
+        <div class="service-row reveal">
+          <div class="service-content">
+            <h3>Engaging 2D/3D games using Unity, Unreal, and C#.</h3>
+            <p>We create immersive 2D and 3D games with rich visuals and smooth mechanics, built using Unity, Unreal,
+              and C# to deliver engaging player experiences.</p>
+          </div>
+          <div class="service-image">
+            <img src="assets/images/unity 1logo.png" alt="Unity and Unreal">
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="service-row reveal">
+          <div class="service-image">
+            <img src="assets/images/xr.png" alt="AR/VR">
+          </div>
+          <div class="service-content">
+            <h3>Immersive augmented and virtual reality applications.</h3>
+            <p>We build immersive AR and VR applications that bring ideas to life, delivering interactive and realistic
+              experiences for training, marketing, and entertainment.</p>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="service-row reveal">
+          <div class="service-content">
+            <h3>Career-Focused Training Programs in Game Development</h3>
+            <p>Career-focused game development training with industry tools, real workflows, and hands-on projects to
+              make learners job-ready.</p>
+          </div>
+          <div class="service-image">
+            <img src="assets/images/game controller.png" alt="Training">
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="service-row reveal">
+          <div class="service-image">
+            <img src="assets/images/app 1.jpeg" alt="Mobile Apps">
+          </div>
+          <div class="service-content">
+            <h3>Custom iOS & Android App Development</h3>
+            <p>We build custom iOS and Android apps tailored to your business needs, helping you simplify processes,
+              improve user experience, and deliver seamless performance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section" id="process" style="background:var(--black)">
+    <div class="max-w">
+      <div class="section-header">
+        <div class="section-badge">How We Work</div>
+        <h2 class="section-title">Our 6-Step Process</h2>
+        <p class="section-sub">Every project follows a proven methodology for on-time, on-budget delivery.</p>
+      </div>
+      <div class="grid-2">
+        <div class="step-item">
+          <div class="step-num">Step 1</div>
+          <h3>Discovery</h3>
+          <p>Deep dive into your vision, goals, and project requirements to align on scope and outcomes.</p>
+          <video class="step-video" autoplay loop muted playsinline>
+            <source src="assets/videos/step1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="step-item">
+          <div class="step-num">Step 2</div>
+          <h3>Planning</h3>
+          <p>Creating a detailed roadmap with clear milestones, timelines, and deliverables.</p>
+          <video class="step-video" autoplay loop muted playsinline>
+            <source src="assets/videos/step 2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="step-item">
+          <div class="step-num">Step 3</div>
+          <h3>Design</h3>
+          <p>Crafting seamless UI/UX experiences with prototypes and design reviews before development.</p>
+          <video class="step-video" autoplay loop muted playsinline>
+            <source src="assets/videos/step3.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="step-item">
+          <div class="step-num">Step 4</div>
+          <h3>Development</h3>
+          <p>Building secure, scalable solutions with regular progress updates and sprint reviews.</p>
+          <video class="step-video" autoplay loop muted playsinline>
+            <source src="assets/videos/step4.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="step-item">
+          <div class="step-num">Step 5</div>
+          <h3>Testing</h3>
+          <p>Rigorous QA across devices and platforms — ensuring flawless performance before launch.</p>
+          <video class="step-video" autoplay loop muted playsinline>
+            <source src="assets/videos/step5.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="step-item">
+          <div class="step-num">Step 6</div>
+          <h3>Launch &amp; Support</h3>
+          <p>Smooth deployment with ongoing maintenance, updates, and performance monitoring.</p>
+          <video class="step-video" autoplay loop muted playsinline>
+            <source src="assets/videos/step6.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES TEASER -->
+  <section class="section-sm" style="background:var(--black)">
+    <div class="max-w-md">
+      <div class="section-header reveal">
+        <div class="section-badge">Course</div>
+        <h2 class="section-title">Level Up Your Skills With Rextech Academy</h2>
+        <p class="section-sub">Learn game development with Rextech Academy. Courses in Unity and C# with
+          hands-on training for beginners and professionals.</p>
+      </div>
+      <div class="grid-2" style="margin-bottom:32px">
+        <a href="https://rextech.academy/" target="_blank" rel="noopener" class="card course-card reveal rd1">
+          <div class="course-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="20" height="12" rx="4" />
+              <path d="M8 12h4m-2-2v4" />
+              <circle cx="17" cy="12" r="1" fill="currentColor" stroke="none" />
+              <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
+          <h3>Game Development with Unity</h3>
+          <p>Build 2D/3D games using Unity Engine.</p>
+        </a>
+        <a href="https://rextech.academy/" target="_blank" rel="noopener" class="card course-card reveal rd2">
+          <div class="course-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+          </div>
+          <h3>C# for Game Development</h3>
+          <p>Master the programming foundation for Unity.</p>
+        </a>
+      </div>
+      <div style="text-align:center" class="reveal">
+        <a href="courses.html" class="btn btn-primary">Explore All Courses</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO PREVIEW -->
+  <section class="section" id="portfolio" style="background:var(--black)">
+    <div style="max-width:1200px;margin:0 auto">
+      <div style="margin-bottom:40px" class="reveal">
+        <div class="section-badge">Portfolio</div>
+        <div class="portfolio-title-main">Showcasing Your Best</div>
+        <div class="portfolio-title-dim">Work with Pure Precision.</div>
+        <p
+          style="font-family:var(--fb);font-size:16px;color:var(--w50);max-width:480px;margin:14px 0 24px;letter-spacing:-0.2px;line-height:1.6">
+          From startups to established brands, we create tailored solutions that drive success and make a real impact.
+        </p>
+        <div class="btn-beam-wrap">
+          <a href="portfolio.html" class="btn btn-secondary portfolio-btn">View More Works</a>
+        </div>
+        <div class="p-cards">
+          <div class="p-card reveal">
+            <div class="p-card-content">
+              <div class="p-card-title">AR Car Parking</div>
+              <div class="p-divider"></div>
+              <div class="p-points">
+                <div class="p-point">Easy to use and beginner-friendly</div>
+                <div class="p-point">Improves safety by avoiding collisions</div>
+                <div class="p-point">Works using mobile camera or in-car display</div>
+                <div class="p-point">Useful in malls, apartments, and offices</div>
+              </div>
+            </div>
+            <div class="p-card-img"><img src="./assets/images/ar-car-parking.png" alt="AR Car Parking" loading="lazy">
+            </div>
+          </div>
+          <div class="p-card reveal">
+            <div class="p-card-content">
+              <div class="p-card-title">Rock Paper Tuition</div>
+              <div class="p-divider"></div>
+              <div class="p-points">
+                <div class="p-point">Useful for learning UI and interaction</div>
+                <div class="p-point">Fun and interactive learning activity</div>
+                <div class="p-point">Suitable for primary school students</div>
+                <div class="p-point">Encourages quick thinking</div>
+              </div>
+            </div>
+            <div class="p-card-img"><img src="./assets/images/rock_paper_tuition.png" alt="Rock Paper Tuition"
+                loading="lazy"></div>
+          </div>
+          <div class="p-card reveal">
+            <div class="p-card-content">
+              <div class="p-card-title">Evento</div>
+              <div class="p-divider"></div>
+              <div class="p-points">
+                <div class="p-point">Mobile app for event discovery and booking</div>
+                <div class="p-point">Secure and reliable system</div>
+                <div class="p-point">Reduces manual registration work</div>
+              </div>
+            </div>
+            <div class="p-card-img"><img src="./assets/images/evento.png" alt="Evento" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ============================================= -->
+  <!-- CERTIFICATIONS SECTION - Rextech Studios      -->
+
+  <section class="certifications-section" id="certifications">
+    <div class="cert-container">
+
+      <div class="cert-header">
+        <span class="cert-pill">RECOGNITIONS</span>
+        <h2 class="cert-title">
+          Backed <span class="cert-gradient">by the Government</span> — Kerala &amp; India
+        </h2>
+        <p class="cert-subtext">
+          Rextech Studios is officially recognized by government startup bodies at both the
+          state and national level, so clients and partners can verify our standing
+          before they ever ask.
+        </p>
+      </div>
+
+      <div class="cert-grid">
+
+        <!-- CARD 1: Kerala Startup Mission -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <div class="cert-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L14.5 8.5L21 9.3L16.3 13.8L17.6 20.3L12 17L6.4 20.3L7.7 13.8L3 9.3L9.5 8.5L12 2Z"
+                  stroke="white" stroke-width="1.5" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <span class="cert-badge">Kerala, India</span>
+          </div>
+
+          <h3 class="cert-card-title">Kerala Startup Mission</h3>
+          <p class="cert-card-desc">
+            Rextech Studios Private Limited is registered as a recognized startup under the
+            Kerala Startup Mission, an initiative of the Government of Kerala — confirming
+            our legitimacy as an early-stage technology company.
+          </p>
+
+          <ul class="cert-benefits">
+            <li>State Govt. Recognized</li>
+            <li>Verified Registration</li>
+            <li>Publicly Auditable ID</li>
+            <li>Startup Ecosystem Access</li>
+          </ul>
+
+          <div class="cert-footer">
+            <span><svg class="cert-mini-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M12 8v4l3 3M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" />
+              </svg> Valid till Dec 2033</span>
+            <span class="cert-id">ID: KSUM4075</span>
+          </div>
+        </div>
+
+        <!-- CARD 2: Startup India / DPIIT -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <div class="cert-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z" stroke="white" stroke-width="1.5"
+                  stroke-linejoin="round" />
+                <path d="M9 12l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <span class="cert-badge">Govt. of India</span>
+          </div>
+
+          <h3 class="cert-card-title">DPIIT Recognized Startup</h3>
+          <p class="cert-card-desc">
+            Recognized under the Startup India initiative by the Department for Promotion of
+            Industry and Internal Trade (DPIIT), Ministry of Commerce &amp; Industry — placing
+            us among India's officially certified startups in IT services and application
+            development.
+          </p>
+
+          <ul class="cert-benefits">
+            <li>National Recognition</li>
+            <li>IT Services Sector</li>
+            <li>App Development Certified</li>
+            <li>QR-Verified Certificate</li>
+          </ul>
+          <div class="cert-footer">
+            <span><svg class="cert-mini-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M12 8v4l3 3M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" />
+              </svg> Valid till Dec 2033</span>
+            <span class="cert-id">No: DIPP178106</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQS -->
+  <section class="section" id="faqs" style="background:var(--black)">
+    <div class="max-w-md">
+      <div class="section-header reveal">
+        <div class="section-badge">FAQs</div>
+        <h2 class="section-title">We've Got the Answers You're Looking For</h2>
+        <p class="section-sub">Quick answers about our game, AR/VR, and app development services.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px" class="reveal">
+        <div class="faq-item">
+          <div class="faq-q">Do you provide international services?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Yes! Rextech Studios serves clients globally from our base in Kerala, India and Australia.
+            We have delivered projects for clients across India, Southeast Asia, Europe, and beyond.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Which technologies do you use for game development?<span class="faq-icon">+</span></div>
+          <div class="faq-a">We primarily use Unity, Unreal Engine, and C# for game development. For AR/VR, we work with
+            ARCore, ARKit, and Meta/XR SDKs. For mobile apps, we use Flutter, React Native, and native iOS/Android
+            development.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I enroll in Rextech Academy as a beginner?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Absolutely. Rextech Academy is designed for both beginners and experienced developers. Our
+            courses start from the fundamentals and progress to advanced topics, with hands-on projects throughout.
+          </div>
+        </div>
+        <div id="dynamicFaqs"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="testimonials" style="background:var(--black)">
+    <div class="max-w">
+      <div class="section-header reveal">
+        <div class="section-badge">Testimonials</div>
+        <h2 class="section-title">Rextech Studios Reviews</h2>
+        <p class="section-sub">Read client testimonials about Rextech Studios' app, game, and AR/VR projects.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card card-purple testi-card reveal rd1">
+          <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+              class="star">★</span><span class="star">★</span></div>
+          <p class="testi-review">The innovation in Map League reflects Rextech Studios' commitment to excellence and
+            educational impact.</p>
+          <div>
+            <div class="testi-name">Imran K</div>
+            <div class="testi-role">CMO of Map League</div>
+          </div>
+        </div>
+        <div class="card card-purple testi-card reveal rd2">
+          <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+              class="star">★</span><span class="star">★</span></div>
+          <p class="testi-review">The Evento app exceeded our expectations. Rextech Studios is a fantastic partner.</p>
+          <div>
+            <div class="testi-name">Anthony Sergi</div>
+            <div class="testi-role">CEO of Evento</div>
+          </div>
+        </div>
+        <div class="card card-purple testi-card reveal rd3">
+          <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+              class="star">★</span><span class="star">★</span></div>
+          <p class="testi-review">Rextech Studios shows great skill and dedication, creating Gameser with careful
+            attention to detail and focus on quality.</p>
+          <div>
+            <div class="testi-name">Divya S</div>
+            <div class="testi-role">CMO, Gameser</div>
+          </div>
+        </div>
+        <div class="card card-purple testi-card reveal rd4">
+          <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+              class="star">★</span><span class="star">★</span></div>
+          <p class="testi-review">The creativity and professionalism helped us launch on time with great results.</p>
+          <div>
+            <div class="testi-name">Binil K V</div>
+            <div class="testi-role">CMO of Group Lavender</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm" style="background:var(--black)">
+    <div class="cta-box reveal">
+      <h2>Get In Touch With Us</h2>
+      <p>Have questions about our technology or interested in working with us? Contact us today.</p>
+      <a href="contact.html" class="btn btn-primary">Start a Project</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/images/rextech png logo for web.png" alt="Rextech Studios" class="footer-logo">
+        <p class="footer-tagline">Building next-generation games, AR/VR, and apps from India.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Social</h4>
+          <ul>
+            <li><a href="https://x.com/RextechStu4530" target="_blank" rel="noopener">Twitter (X)</a></li>
+            <li><a href="https://www.instagram.com/rextech_studios/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.youtube.com/@Rextechstudiosofficial" target="_blank" rel="noopener">YouTube</a>
+            </li>
+            <li><a href="https://www.linkedin.com/company/rextech-studios/" target="_blank" rel="noopener">LinkedIn</a>
+            </li>
+            <li><a href="https://www.facebook.com/people/Rextech-Studios/61557573849165/" target="_blank"
+                rel="noopener">Facebook</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="footer-contact">
+            <p><a href="tel:+919562965493">+91 95629 65493</a></p>
+            <p><a href="mailto:info@rextechstudios.com">info@rextechstudios.com</a></p>
+            <p>Vismaya 8th Floor, AVGC Arena,<br>Phase 1 Infopark, Kakkanad<br>Ernakulam, Kerala 682042 India</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">India, Australia | Serving Clients Worldwide</span>
+      <span class="footer-rights">© 2023–2026 All rights reserved</span>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+
+  <!-- ===== Zoho CRM Popup Form — OPTION 2 (ultra-minimal, 4 fields) ===== -->
+  <div class="crm-overlay" id="crm-overlay">
+    <div class="crm-wrap" role="dialog" aria-modal="true" aria-labelledby="crm-dialog-title">
+      <button class="crm-modal-close" id="crm-close" aria-label="Close">&times;</button>
+
+      <div class="crm-form-panel">
+        <h2 id="crm-dialog-title">Get in touch</h2>
+
+        <form id="webform1382244000000462509" name="WebToLeads1382244000000462509"
+          action="https://crm.zoho.in/crm/WebToLeadForm" method="POST" accept-charset="UTF-8" target="hidden_iframe"
+          onSubmit="javascript:document.charset='UTF-8'; return checkMandatory1382244000000462509();">
+
+          <input type="text" style="display:none;" name="xnQsjsdp"
+            value="8c33ca1a8f867f2b2689750914c7c27a2017299790f20b1cc26de4c5e72ec5af">
+          <input type="hidden" name="zc_gad" id="zc_gad" value="">
+          <input type="text" style="display:none;" name="xmIwtLD"
+            value="b32f693d1363dfeb0d03edbc826e309949e579b3da5520ab7fa1e4c0da9e87ea95afc0ce080249b894ba8804821a5141">
+          <input type="text" style="display:none;" name="actionType" value="TGVhZHM=">
+          <input type="text" style="display:none;" name="returnURL" value="">
+          <input type="text" style="display:none;" name="aG9uZXlwb3Q" value="">
+
+          <div class="crm-row">
+            <div class="crm-field">
+              <label for="First_Name">First Name <span class="crm-req">*</span></label>
+              <input type="text" id="First_Name" name="First Name" placeholder="First name" maxlength="40" required>
+            </div>
+            <div class="crm-field">
+              <label for="Last_Name">Last Name <span class="crm-req">*</span></label>
+              <input type="text" id="Last_Name" name="Last Name" placeholder="Last name" maxlength="80" required>
+            </div>
+          </div>
+
+          <div class="crm-field">
+            <label for="phone">Contact Number <span class="crm-req">*</span></label>
+            <input id="phone" type="tel" name="Mobile" placeholder="Phone number" maxlength="30" required>
+          </div>
+
+          <div class="crm-field">
+            <label for="Email">Email <span class="crm-opt">(optional)</span></label>
+            <input type="text" ftype="email" id="Email" name="Email" placeholder="you@studio.com" maxlength="100">
+          </div>
+
+          <!-- Note: since "I'm interested in" is required in Zoho, it's kept
+           as a hidden field with a default value so submissions still
+           pass validation on Zoho's side. Remove this block entirely
+           only if you've also made the field optional in Zoho CRM. -->
+          <input type="hidden" name="LEADCF1" value="-None-">
+
+          <button type="submit" id="formsubmit" class="crm-submit-btn">Send</button>
+        </form>
+
+        <div class="crm-thankyou-mini" id="crm-thankyou">
+          Thank you for your response. We'll get back to you soon.
+        </div>
+
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+      </div>
+    </div>
+  </div>
+  <!-- ===== End Zoho CRM Popup Form ===== -->
+
+
+  <!-- THREE.JS ANIMATION SCRIPTS & TYPING ANIMATION -->
+  <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+  <script type="importmap">
+  {
+      "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+  }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+    // --- THREE.JS SPHERE & PARTICLES SETUP --- //
+    const canvasContainer = document.getElementById('canvas-container');
+    let width = canvasContainer.clientWidth || window.innerWidth;
+    let height = canvasContainer.clientHeight || window.innerHeight;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+
+    function updateCameraZ() {
+      if (window.innerWidth < 768) {
+        camera.position.z = 8;
+      } else {
+        camera.position.z = 5;
+      }
+    }
+    updateCameraZ();
+
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true
+    });
+    renderer.setSize(width, height);
+    renderer.toneMapping = THREE.ReinhardToneMapping;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    canvasContainer.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.autoRotate = false;
+    controls.enableZoom = false;
+    controls.enablePan = false;
+    controls.enableRotate = false; // Disable all mouse interactions
+
+    // OUTER SPHERE
+    const outerGeometry = new THREE.SphereGeometry(2.0, 128, 128);
+    const outerMaterial = new THREE.ShaderMaterial({
+      uniforms: { color: { value: new THREE.Color(0x8A2BE2) } },
+      vertexShader: `
+          varying vec3 vNormal;
+          void main(){
+              vNormal = normalize(normal);
+              gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+          }
+      `,
+      fragmentShader: `
+          uniform vec3 color;
+          varying vec3 vNormal;
+          void main(){
+              float intensity = pow(abs(vNormal.y),4.3);
+              gl_FragColor = vec4(color, intensity);
+          }
+      `,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+    const outerSphere = new THREE.Mesh(outerGeometry, outerMaterial);
+    scene.add(outerSphere);
+
+    // INNER SPHERE
+    const innerGeometry = new THREE.SphereGeometry(1.5, 128, 128);
+    const innerMaterial = new THREE.ShaderMaterial({
+      uniforms: { color: { value: new THREE.Color(0x8A2BE2) } },
+      vertexShader: `
+          varying vec3 vNormal;
+          void main(){
+              vNormal = normalize(normal);
+              gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+          }
+      `,
+      fragmentShader: `
+          uniform vec3 color;
+          varying vec3 vNormal;
+          void main(){
+              float intensity = pow(abs(vNormal.x),4.3);
+              gl_FragColor = vec4(color, intensity);
+          }
+      `,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+    const innerSphere = new THREE.Mesh(innerGeometry, innerMaterial);
+    scene.add(innerSphere);
+
+    // PARTICLES
+    const dotCanvas = document.createElement('canvas');
+    dotCanvas.width = 32;
+    dotCanvas.height = 32;
+    const dotContext = dotCanvas.getContext('2d');
+    dotContext.beginPath();
+    dotContext.arc(16, 16, 16, 0, 2 * Math.PI);
+    dotContext.fillStyle = 'white';
+    dotContext.fill();
+    const circleTexture = new THREE.CanvasTexture(dotCanvas);
+
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 1000;
+    const posArray = new Float32Array(particlesCount * 3);
+    for (let i = 0; i < particlesCount * 3; i += 3) {
+      const r = 2.0 + Math.random() * 8.0;
+      const theta = Math.random() * 2 * Math.PI;
+      const phi = Math.acos(Math.random() * 2 - 1);
+
+      posArray[i] = r * Math.sin(phi) * Math.cos(theta);
+      posArray[i + 1] = r * Math.sin(phi) * Math.sin(theta);
+      posArray[i + 2] = r * Math.cos(phi);
+    }
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.015,
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.6,
+      map: circleTexture,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending
+    });
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
+
+    // BLOOM
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    const bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(width, height),
+      2.2, 2.2, 0.1
+    );
+    composer.addPass(bloomPass);
+
+    // RESIZE
+    window.addEventListener('resize', () => {
+      if (!canvasContainer) return;
+      width = canvasContainer.clientWidth || window.innerWidth;
+      height = canvasContainer.clientHeight || window.innerHeight;
+      camera.aspect = width / height;
+      updateCameraZ();
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+      composer.setSize(width, height);
+    });
+
+    // ANIMATION LOOP
+    let isHeroVisible = true;
+    const heroObserver = new IntersectionObserver((entries) => {
+      isHeroVisible = entries[0].isIntersecting;
+    });
+    const heroSection = document.getElementById('home');
+    if (heroSection) heroObserver.observe(heroSection);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      if (!isHeroVisible) return;
+
+      controls.update();
+      outerSphere.rotation.z += 0.01;
+      innerSphere.rotation.z -= 0.01;
+
+      const positions = particlesGeometry.attributes.position.array;
+      for (let i = 0; i < particlesCount * 3; i += 3) {
+        let x = positions[i];
+        let y = positions[i + 1];
+        let z = positions[i + 2];
+
+        const dist = Math.sqrt(x * x + y * y + z * z);
+        if (dist < 1.0) { // reset when inside the sphere
+          const r = 8.0 + Math.random() * 4.0;
+          const theta = Math.random() * 2 * Math.PI;
+          const phi = Math.acos(Math.random() * 2 - 1);
+          x = r * Math.sin(phi) * Math.cos(theta);
+          y = r * Math.sin(phi) * Math.sin(theta);
+          z = r * Math.cos(phi);
+        } else {
+          // move towards center
+          const speed = 0.003 + (1.0 / dist) * 0.01; // slightly faster as it gets closer
+          x -= (x / dist) * speed;
+          y -= (y / dist) * speed;
+          z -= (z / dist) * speed;
+        }
+
+        positions[i] = x;
+        positions[i + 1] = y;
+        positions[i + 2] = z;
+      }
+      particlesGeometry.attributes.position.needsUpdate = true;
+      particlesMesh.rotation.y += 0.001;
+      particlesMesh.rotation.z += 0.001;
+
+      composer.render();
+    }
+    animate();
+
+    // Show 3D scene and glass panel together
+    setTimeout(() => {
+      const canvasElement = canvasContainer.querySelector('canvas');
+      if (canvasElement) canvasElement.classList.add('visible');
+      const glassPanel = document.querySelector('.glass-panel');
+      if (glassPanel) glassPanel.classList.add('visible');
+    }, 100);
+
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/intlTelInput.min.js"></script>
+
+  <script>
+    const phoneInput = document.querySelector("#phone");
+
+    const iti = window.intlTelInput(phoneInput, {
+      initialCountry: "in",
+      countryOrder: ["in", "us", "gb", "au"],
+      separateDialCode: true,
+      loadUtils: () => import("https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/utils.js")
+    });
+
+    // separateDialCode hides the country code from the input value — write the
+    // full E.164 number back before the form posts, so the lead keeps its prefix.
+    const crmForm = document.getElementById("webform1382244000000462509");
+    if (crmForm) {
+      crmForm.addEventListener("submit", function () {
+        const full = iti.getNumber();
+        if (full) phoneInput.value = full;
+      });
+    }
+    fetch("https://rextech-django-production.up.railway.app")
+      .then(res => res.json())
+      .then(data => {
+
+        const container = document.getElementById("dynamicFaqs");
+
+        data.forEach(faq => {
+
+          container.innerHTML += `
+        <div class="faq-item">
+            <div class="faq-q">
+                ${faq.question}
+                <span class="faq-icon">+</span>
+            </div>
+
+            <div class="faq-a">
+                ${faq.answer}
+            </div>
+        </div>`
+            ;
+
+        });
+
+        initFAQ();
+
+      });
+  </script>
+  <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Rextech Studios",
+    "url": "https://rextechstudios.com/",
+    "description": "Rextech Studios is a technology studio in India specializing in AR/VR, metaverse projects, mobile app and game development, and technology solutions."
+    }
+  </script>
 </body>
+
 </html>

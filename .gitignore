@@ -69,3 +69,7 @@ node_modules/
 .dataconnect
 
 .vercel
+.env*
+
+.vercel
+.env*
