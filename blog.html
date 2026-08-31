@@ -172,7 +172,7 @@
                     <div class="section-badge">Latest Posts</div>
                     <h2 class="section-title">From the Team</h2>
                 </div>
-                <div id="dynamicBlog" class="grid-3 reveal">
+                <div id="staticBlog" class="grid-3 reveal">
                     <div class="card blog-card">
                         <div class="blog-img">
                             <img src="./assets/images/metaverse1.jpg" alt="Metaverse">
@@ -252,6 +252,7 @@
                         </div>
                     </div>
                 </div>
+                <div id="dynamicBlog" class="grid-3 reveal"></div>
             </div>
         </div>
     </section>
@@ -312,7 +313,7 @@
         .then(blogs => {
           const blogGrid = document.getElementById("dynamicBlog");
           if (!blogGrid || blogs.length === 0) return;
-          // Keep static cards; append API cards
+          blogGrid.innerHTML = "";
           blogs.forEach(blog => {
             const card = document.createElement("div");
             card.className = "card blog-card";
