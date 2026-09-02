@@ -1,281 +1,1030 @@
 ﻿<!DOCTYPE html>
-
 <html lang="en-US">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Blog | Rextech Studios</title>
-    <meta
-        content="Stay updated with Rextech Studios' blog on mobile apps, game development, AR/VR, and metaverse innovations."
-        name="description" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://rextechstudios.com/blog.html" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta property="og:title" content="Blog | Rextech Studios" />
-    <meta property="og:description"
-        content="Stay updated with Rextech Studios' insights on mobile apps, game development, AR/VR, and metaverse innovations." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://rextechstudios.com/blog.html" />
-    <link href="./assets/images/framer-favicon.png" rel="icon" />
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;900&amp;family=DM+Sans:wght@300;400;500;700&amp;display=swap"
-        rel="stylesheet" />
-    <link href="assets/style.css" rel="stylesheet" />
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-35PN29619F"></script>
-    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-35PN29619F');</script>
-    <style>
-        .blog-card {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            overflow: hidden;
-            transition: border-color .3s, transform .3s
-        }
+  <title>Blog | Rextech Studios</title>
 
-        .blog-card:hover {
-            border-color: rgba(129, 74, 200, .5);
-            transform: translateY(-4px)
-        }
+  <meta name="description"
+    content="Insights and articles from Rextech Studios on technology, games, AR/VR, mobile apps and digital experiences.">
 
-        .blog-img {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, rgba(129, 74, 200, .3) 0%, rgba(0, 0, 0, .8) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px
-        }
+  <link rel="icon" href="assets/favicon.png">
 
-        .blog-body {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            flex: 1
-        }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        .blog-tag {
-            display: inline-block;
-            font-family: var(--fh);
-            font-size: 11px;
-            font-weight: 500;
-            background: rgba(129, 74, 200, .2);
-            color: var(--purple-light);
-            border-radius: 4px;
-            padding: 3px 8px;
-            letter-spacing: .02em;
-            width: fit-content
-        }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;900&family=DM+Sans:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
 
-        .blog-title {
-            font-family: var(--fh);
-            font-size: 19px;
-            font-weight: 600;
-            letter-spacing: -0.04em;
-            line-height: 1.3
-        }
+  <!-- Main Website CSS -->
+  <link rel="stylesheet" href="assets/style.css">
 
-        .blog-excerpt {
-            font-family: var(--fh);
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--w75);
-            letter-spacing: -0.02em;
-            line-height: 1.5;
-            flex: 1
-        }
+  <style>
+    /* =========================================================
+           REXTECH BLOG DETAIL PAGE
+        ========================================================= */
 
-        .blog-meta {
-            font-family: var(--fh);
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--w50);
-            display: flex;
-            gap: 12px;
-            margin-top: 4px
-        }
+    .blog-detail-page {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% 0%,
+          rgba(100, 55, 160, 0.16),
+          transparent 42%),
+        #08070d;
 
-        .blog-read {
-            font-family: var(--fh);
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--purple-light);
-            margin-top: 8px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px
-        }
-    </style>
+      color: #f5f2fa;
+    }
+
+
+    /* =========================================================
+           HERO
+        ========================================================= */
+
+    .blog-detail-hero {
+      max-width: 1200px;
+      margin: 0 auto;
+
+      padding: 110px 40px 75px;
+
+      text-align: center;
+    }
+
+
+    /* CATEGORY */
+
+    .blog-detail-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 8px 16px;
+
+      background: rgba(45, 27, 70, 0.55);
+
+      border: 1px solid rgba(155, 92, 255, 0.22);
+
+      border-radius: 999px;
+
+      color: #d8c8ed;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 13px;
+      font-weight: 500;
+
+      margin-bottom: 28px;
+    }
+
+
+    .blog-detail-category::before {
+      content: "";
+
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: #b66cff;
+
+      box-shadow:
+        0 0 10px rgba(182, 108, 255, 0.65);
+    }
+
+
+    /* TITLE */
+
+    .blog-detail-title {
+      max-width: 1000px;
+
+      margin: 0 auto;
+
+      color: #f7f3fb;
+
+      font-family: "Figtree", sans-serif;
+
+      font-size: clamp(48px, 6vw, 82px);
+
+      font-weight: 600;
+
+      line-height: 0.98;
+
+      letter-spacing: -3px;
+    }
+
+
+    /* META */
+
+    .blog-detail-meta {
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      flex-wrap: wrap;
+
+      gap: 35px;
+
+      margin-top: 38px;
+
+      color: #8f899d;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 14px;
+    }
+
+
+    .blog-meta-item {
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+    }
+
+
+    .blog-meta-item strong {
+      color: #ddd5e7;
+
+      font-weight: 500;
+    }
+
+
+    /* =========================================================
+           HERO IMAGE
+        ========================================================= */
+
+    .blog-detail-media {
+      width: calc(100% - 80px);
+
+      max-width: 1450px;
+
+      height: 620px;
+
+      margin: 0 auto;
+
+      overflow: hidden;
+
+      border-radius: 28px;
+
+      background: #100d18;
+
+      box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(155, 92, 255, 0.08);
+    }
+
+
+    .blog-detail-image {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      object-position: center;
+
+      transition: transform 0.7s ease;
+    }
+
+
+    .blog-detail-media:hover .blog-detail-image {
+      transform: scale(1.015);
+    }
+
+
+    /* =========================================================
+           BLOG CONTENT
+        ========================================================= */
+
+    .blog-detail-content-wrapper {
+      max-width: 950px;
+
+      margin: 0 auto;
+
+      padding: 90px 40px 110px;
+    }
+
+
+    .blog-detail-content {
+      color: #b0a7b9;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 19px;
+
+      line-height: 1.9;
+    }
+
+
+    .blog-detail-content p {
+      margin: 0 0 28px;
+    }
+
+
+    .blog-detail-content h2 {
+      margin: 55px 0 20px;
+
+      color: #f3edf8;
+
+      font-family: "Figtree", sans-serif;
+
+      font-size: 34px;
+
+      line-height: 1.15;
+
+      font-weight: 600;
+
+      letter-spacing: -1px;
+    }
+
+
+    .blog-detail-content h3 {
+      margin: 40px 0 15px;
+
+      color: #f3edf8;
+
+      font-family: "Figtree", sans-serif;
+
+      font-size: 26px;
+
+      font-weight: 600;
+    }
+
+
+    .blog-detail-content strong {
+      color: #eee7f4;
+
+      font-weight: 600;
+    }
+
+
+    .blog-detail-content ul,
+    .blog-detail-content ol {
+      margin: 25px 0;
+
+      padding-left: 25px;
+    }
+
+
+    .blog-detail-content li {
+      margin-bottom: 12px;
+    }
+
+
+    /* =========================================================
+           DIVIDER
+        ========================================================= */
+
+    .blog-detail-divider {
+      width: 100%;
+
+      height: 1px;
+
+      margin: 0 auto;
+
+      background: rgba(155, 92, 255, 0.14);
+    }
+
+
+    /* =========================================================
+           BACK TO BLOG
+        ========================================================= */
+
+    .blog-back-wrapper {
+      max-width: 950px;
+
+      margin: 0 auto;
+
+      padding: 0 40px 110px;
+    }
+
+
+    .blog-back-link {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      color: #a99db3;
+
+      text-decoration: none;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 14px;
+
+      transition: all 0.3s ease;
+    }
+
+
+    .blog-back-link:hover {
+      color: #b66cff;
+
+      transform: translateX(-3px);
+    }
+
+
+    /* =========================================================
+           CTA
+        ========================================================= */
+
+    .blog-detail-cta {
+      padding: 100px 30px;
+
+      background: #000;
+    }
+
+
+    .blog-detail-cta .cta-box {
+      max-width: 1000px;
+
+      margin: 0 auto;
+    }
+
+
+    /* =========================================================
+           LOADING
+        ========================================================= */
+
+    .blog-loading {
+      min-height: 300px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      color: #8f899d;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 15px;
+    }
+
+
+    /* =========================================================
+           ERROR
+        ========================================================= */
+
+    .blog-error {
+      min-height: 400px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 40px;
+    }
+
+
+    .blog-error h2 {
+      color: #f5f1f9;
+
+      font-family: "Figtree", sans-serif;
+
+      font-size: 38px;
+
+      margin-bottom: 15px;
+    }
+
+
+    .blog-error p {
+      color: #8f899d;
+
+      font-family: "DM Sans", sans-serif;
+    }
+
+
+    /* =========================================================
+           MOBILE
+        ========================================================= */
+
+    @media (max-width: 900px) {
+
+      .blog-detail-hero {
+        padding: 85px 30px 60px;
+      }
+
+
+      .blog-detail-title {
+        font-size: clamp(42px, 9vw, 65px);
+
+        letter-spacing: -2px;
+      }
+
+
+      .blog-detail-media {
+        width: calc(100% - 50px);
+
+        height: 500px;
+
+        border-radius: 22px;
+      }
+
+
+      .blog-detail-content-wrapper {
+        padding: 70px 30px 90px;
+      }
+
+
+      .blog-detail-content {
+        font-size: 18px;
+
+        line-height: 1.8;
+      }
+
+
+      .blog-back-wrapper {
+        padding: 0 30px 90px;
+      }
+    }
+
+
+    @media (max-width: 600px) {
+
+      .blog-detail-hero {
+        padding: 70px 20px 50px;
+      }
+
+
+      .blog-detail-category {
+        font-size: 12px;
+
+        padding: 7px 13px;
+      }
+
+
+      .blog-detail-title {
+        font-size: 42px;
+
+        line-height: 1;
+
+        letter-spacing: -1.5px;
+      }
+
+
+      .blog-detail-meta {
+        gap: 15px;
+
+        margin-top: 28px;
+
+        font-size: 12px;
+      }
+
+
+      .blog-detail-media {
+        width: calc(100% - 30px);
+
+        height: 320px;
+
+        border-radius: 18px;
+      }
+
+
+      .blog-detail-content-wrapper {
+        padding: 55px 25px 70px;
+      }
+
+
+      .blog-detail-content {
+        font-size: 16px;
+
+        line-height: 1.8;
+      }
+
+
+      .blog-detail-content h2 {
+        font-size: 29px;
+
+        margin-top: 45px;
+      }
+
+
+      .blog-detail-content h3 {
+        font-size: 24px;
+      }
+
+
+      .blog-back-wrapper {
+        padding: 0 25px 70px;
+      }
+
+
+      .blog-detail-cta {
+        padding: 75px 20px;
+      }
+    }
+  </style>
 </head>
 
+
 <body>
-    <nav class="nav">
-        <a href="index.html"><img alt="Rextech Studios" class="nav-logo"
-                src="assets/images/rextech png logo for web.png" /></a>
-        <ul class="nav-links">
-            <div class="nav-indicator"></div>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="courses.html">Courses</a></li>
-        </ul>
-        <a class="nav-cta" href="contact.html">Contact Us</a>
-        <button aria-label="Menu" class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-    </nav>
-    <div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="about.html">About</a><a
-            href="blog.html">Blog</a><a href="portfolio.html">Portfolio</a><a href="courses.html">Courses</a><a
-            class="mob-cta" href="contact.html">Contact Us</a></div>
-    <div class="page-hero" style="min-height:40vh; padding-top: 150px; padding-bottom: 50px;">
-        <div class="page-hero-bg reveal"></div>
-        <div class="page-hero-badge reveal rd1" id="postCategory">Loading...</div>
-        <h1 class="reveal rd2 hero-custom-title" id="postTitle" style="font-size: 3rem !important; opacity:1 !important; transform:none !important; filter:none !important; animation:none !important;">
-            Loading Title...
-        </h1>
-        <p class="rd3 hero-custom-sub" id="postMeta" style="opacity:1 !important; transform:none !important; filter:none !important; animation:none !important; margin-bottom: 30px;">
-            By Rextech Studios
+
+
+  <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+
+  <nav class="nav">
+
+    <a href="index.html">
+      <img src="assets/images/rextech png logo for web.png" alt="Rextech Studios" class="nav-logo">
+    </a>
+
+
+    <ul class="nav-links">
+
+      <div class="nav-indicator"></div>
+
+      <li>
+        <a href="index.html">Home</a>
+      </li>
+
+      <li>
+        <a href="about.html">About</a>
+      </li>
+
+      <li>
+        <a href="blog.html" class="active">Blog</a>
+      </li>
+
+      <li>
+        <a href="portfolio.html">Portfolio</a>
+      </li>
+
+      <li>
+        <a href="courses.html">Courses</a>
+      </li>
+
+    </ul>
+
+
+    <a href="contact.html" class="nav-cta">
+      Contact Us
+    </a>
+
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
+  </nav>
+
+
+  <!-- MOBILE MENU -->
+
+  <div class="mobile-menu" id="mobileMenu">
+
+    <a href="index.html">Home</a>
+
+    <a href="about.html">About</a>
+
+    <a href="blog.html">Blog</a>
+
+    <a href="portfolio.html">Portfolio</a>
+
+    <a href="courses.html">Courses</a>
+
+    <a href="contact.html" class="mob-cta">
+      Contact Us
+    </a>
+
+  </div>
+
+
+
+  <!-- =========================================================
+         BLOG DETAIL
+    ========================================================== -->
+
+  <main class="blog-detail-page">
+
+
+    <!-- HERO -->
+
+    <section class="blog-detail-hero">
+
+      <span class="blog-detail-category" id="blogCategory">
+
+        Loading...
+
+      </span>
+
+
+      <h1 class="blog-detail-title" id="blogTitle">
+
+        Loading...
+
+      </h1>
+
+
+      <div class="blog-detail-meta" id="blogMeta">
+
+        <div class="blog-meta-item">
+          <span>By</span>
+          <strong id="blogAuthor">
+            Loading...
+          </strong>
+        </div>
+
+
+        <div class="blog-meta-item">
+          <span>Published</span>
+          <strong id="blogDate">
+            Loading...
+          </strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- HERO IMAGE -->
+
+    <section class="blog-detail-media">
+
+      <img id="blogImage" class="blog-detail-image" src="" alt="Blog image">
+
+    </section>
+
+
+
+    <!-- BLOG CONTENT -->
+
+    <section class="blog-detail-content-wrapper">
+
+      <article class="blog-detail-content" id="blogContent">
+
+        <div class="blog-loading">
+          Loading blog content...
+        </div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- DIVIDER -->
+
+    <div class="blog-detail-divider"></div>
+
+
+
+    <!-- BACK TO BLOG -->
+
+    <div class="blog-back-wrapper">
+
+      <a href="blog.html" class="blog-back-link">
+
+        &larr; Back to all blogs
+
+      </a>
+
+    </div>
+
+
+  </main>
+
+
+
+  <!-- =========================================================
+         CTA
+    ========================================================== -->
+
+  <section class="blog-detail-cta">
+
+    <div class="cta-box reveal">
+
+      <h2>
+        Ready to Build?
+      </h2>
+
+      <p>
+        Let's bring your ideas to life with
+        cutting-edge technology.
+      </p>
+
+      <a href="contact.html" class="btn btn-primary">
+
+        Get in Touch
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+  <footer>
+
+    <div class="footer-top">
+
+      <div>
+
+        <img src="assets/images/rextech png logo for web.png" alt="Rextech Studios" class="footer-logo">
+
+
+        <p class="footer-tagline">
+          Building next-generation games, AR/VR, and apps from India.
         </p>
+
+      </div>
+
+
+      <div class="footer-cols">
+
+
+        <!-- PAGES -->
+
+        <div class="footer-col">
+
+          <h4>Pages</h4>
+
+          <ul>
+
+            <li>
+              <a href="index.html">
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a href="about.html">
+                About
+              </a>
+            </li>
+
+            <li>
+              <a href="blog.html">
+                Blog
+              </a>
+            </li>
+
+            <li>
+              <a href="portfolio.html">
+                Portfolio
+              </a>
+            </li>
+
+            <li>
+              <a href="contact.html">
+                Contact
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+
+        <!-- SOCIAL -->
+
+        <div class="footer-col">
+
+          <h4>Social</h4>
+
+          <ul>
+
+            <li>
+              <a href="https://x.com/RextechStu4530" target="_blank" rel="noopener">
+
+                Twitter (X)
+
+              </a>
+            </li>
+
+
+            <li>
+              <a href="https://www.instagram.com/rextech_studios/" target="_blank" rel="noopener">
+
+                Instagram
+
+              </a>
+            </li>
+
+
+            <li>
+              <a href="https://www.youtube.com/@Rextechstudiosofficial" target="_blank" rel="noopener">
+
+                YouTube
+
+              </a>
+            </li>
+
+
+            <li>
+              <a href="https://www.linkedin.com/company/rextech-studios/" target="_blank" rel="noopener">
+
+                LinkedIn
+
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-col">
+
+          <h4>
+            Contact Us
+          </h4>
+
+
+          <div class="footer-contact">
+
+            <p>
+              <a href="tel:+919562965493">
+                +91 95629 65493
+              </a>
+            </p>
+
+
+            <p>
+              <a href="mailto:info@rextechstudios.com">
+                info@rextechstudios.com
+              </a>
+            </p>
+
+
+            <p>
+              Vismaya 8th Floor, AVGC Arena,<br>
+              Phase 1 Infopark, Kakkanad<br>
+              Ernakulam, Kerala 682042 India
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
-        
+
+
+    <div class="footer-bottom">
+
+      <span class="footer-copy">
+        India, Australia | Serving Clients Worldwide
+      </span>
+
+
+      <span class="footer-rights">
+        &copy; 2023-2026 All rights reserved
+      </span>
+
     </div>
-    <section class="section blog-section" style="background:var(--black); padding-top: 20px;">
-        <div class="blog-content reveal rd1">
-            <div class="max-w" style="max-width: 800px; margin: 0 auto;">
-                <div id="postImage" style="width: 100%; border-radius: 20px; overflow: hidden; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.1);">
-                    <!-- Image inserted via JS -->
-                </div>
-                <div id="postContent" style="color: #ccc; font-size: 1.1rem; line-height: 1.8;">
-                    Loading content...
-                </div>
-                <div style="margin-top: 60px;">
-                    <a href="blog.html" class="btn btn-primary" style="background: var(--purple-primary); border: none; padding: 12px 24px; border-radius: 30px; color: #fff; text-decoration: none;">&larr; Back to Blogs</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="section-sm" style="background:var(--black)">
-        <div class="cta-box reveal">
-            <h2>Want to Work With Us?</h2>
-            <p>Let's build something remarkable together.</p>
-            <a class="btn btn-primary" href="contact.html">Get in Touch</a>
-        </div>
-    </section>
-    <footer>
-        <div class="footer-top">
-            <div><img alt="Rextech Studios" class="footer-logo" src="./assets/images/framer-footer-logo.png" />
-                <p class="footer-tagline">Building next-generation games, AR/VR, and apps from India.</p>
-            </div>
-            <div class="footer-cols">
-                <div class="footer-col">
-                    <h4>Pages</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Social</h4>
-                    <ul>
-                        <li><a href="https://x.com/RextechStu4530" rel="noopener" target="_blank">Twitter (X)</a></li>
-                        <li><a href="https://www.instagram.com/rextech_studios/" rel="noopener"
-                                target="_blank">Instagram</a></li>
-                        <li><a href="https://www.youtube.com/@Rextechstudiosofficial" rel="noopener"
-                                target="_blank">YouTube</a></li>
-                        <li><a href="https://www.linkedin.com/company/rextech-studios/" rel="noopener"
-                                target="_blank">LinkedIn</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact Us</h4>
-                    <div class="footer-contact">
-                        <p><a href="tel:+919562965493">+91 95629 65493</a></p>
-                        <p><a href="mailto:info@rextechstudios.com">info@rextechstudios.com</a></p>
-                        <p>Vismaya 8th Floor, AVGC Arena,<br />Phase 1 Infopark, Kakkanad<br />Kerala 682042 India</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom"><span class="footer-copy">India, Australia | Serving Clients Worldwide</span><span
-                class="footer-rights">Â© 2023â€“2026 All rights reserved</span></div>
-    </footer>
-    <script src="assets/main.js?v=2"></script>
-    <!-- Blog Dynamic Fetch v2 -->
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const blogId = urlParams.get('id');
+
+  </footer>
+
+
+
+  <!-- MAIN JS -->
+
+  <script src="assets/main.js"></script>
+
+
+
+  <!-- =========================================================
+         BLOG API
+    ========================================================== -->
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", async () => {
+
+      const params = new URLSearchParams(window.location.search);
+      const blogId = params.get("id");
 
       if (!blogId) {
-          document.getElementById("postTitle").innerText = "Blog Post Not Found";
-          document.getElementById("postContent").innerHTML = "<p>No blog ID provided in the URL. Please go back to the blog page.</p>";
-          document.getElementById("postCategory").innerText = "Error";
-          document.getElementById("postMeta").innerText = "";
-      } else {
-          fetch("https://rextech-django-production.up.railway.app/api/blog/")
-            .then(response => response.json())
-            .then(blogs => {
-              const blog = blogs.find(b => b.id == blogId);
-              
-              if (!blog) {
-                  document.getElementById("postTitle").innerText = "Blog Post Not Found";
-                  document.getElementById("postContent").innerHTML = "<p>We couldn't find this post.</p>";
-                  document.getElementById("postCategory").innerText = "Error";
-                  return;
-              }
-
-              // Set Title & Category
-              document.getElementById("postTitle").innerText = blog.title;
-              document.getElementById("postCategory").innerText = blog.category || "Blog";
-
-              // Set Meta
-              const date = new Date(blog.created_at).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
-              document.getElementById("postMeta").innerText = `By ${blog.author || "Rextech Studios"} | ${date}`;
-
-              // Set Image
-              const imageUrl = blog.image && blog.image.startsWith("http")
-                ? blog.image
-                : `https://rextech-django-production.up.railway.app${blog.image}`;
-              
-              if (blog.image) {
-                  document.getElementById("postImage").innerHTML = `<img src="${imageUrl}" alt="${blog.title}" style="width: 100%; height: auto; display: block; object-fit: cover;">`;
-              }
-
-              // Set Content - preserving paragraphs!
-              if (blog.content) {
-                  // split by double newlines or single newlines and wrap in <p>
-                  const paragraphs = blog.content.split(/
-+/).filter(p => p.trim() !== '');
-                  const formattedContent = paragraphs.map(p => `<p style="margin-bottom: 20px;">${p}</p>`).join('');
-                  document.getElementById("postContent").innerHTML = formattedContent;
-              } else {
-                  document.getElementById("postContent").innerHTML = "<p>No content available.</p>";
-              }
-            })
-            .catch(err => {
-                console.error("Blog fetch error:", err);
-                document.getElementById("postTitle").innerText = "Error Loading Post";
-                document.getElementById("postContent").innerHTML = "<p>Please try again later. The server might be asleep.</p>";
-            });
+        showBlogError("Blog Not Found", "No blog ID was provided.");
+        return;
       }
-    </script>
-    <script type="application/ld+json">
-    {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "Rextech Studios Blog",
-    "url": "https://rextechstudios.com/blog.html",
-    "description": "Stay updated with Rextech Studios' blog on mobile apps, game development, AR/VR, and metaverse innovations."
+
+      const API_BASE = "https://rextech-django-production.up.railway.app";
+
+      try {
+        const response = await fetch(`${API_BASE}/api/blog/`);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const blogs = await response.json();
+        const blog = blogs.find(b => b.id == blogId);
+
+        if (!blog) {
+             showBlogError("Blog Not Found", "We couldn't find this post.");
+             return;
+        }
+
+        console.log("Blog data:", blog);
+
+        // CATEGORY
+        document.getElementById("blogCategory").textContent = blog.category || "BLOG";
+
+        // TITLE
+        document.getElementById("blogTitle").textContent = blog.title || "Untitled Blog";
+
+        // AUTHOR
+        document.getElementById("blogAuthor").textContent = blog.author || "Rextech Studios";
+
+        // DATE
+        const dateElement = document.getElementById("blogDate");
+        if (blog.created_at) {
+          const date = new Date(blog.created_at);
+          dateElement.textContent = date.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+          });
+        } else {
+          dateElement.textContent = "Rextech Studios";
+        }
+
+        // IMAGE
+        const imageElement = document.getElementById("blogImage");
+        let imageUrl = "";
+        if (blog.image) {
+          imageUrl = blog.image.startsWith("http") ? blog.image : `${API_BASE}${blog.image}`;
+        }
+        if (imageUrl) {
+          imageElement.src = imageUrl;
+          imageElement.alt = blog.title || "Blog image";
+        } else {
+          imageElement.style.display = "none";
+        }
+
+        // CONTENT
+        const contentElement = document.getElementById("blogContent");
+        if (blog.content) {
+          const content = blog.content
+              .trim()
+              .split(/\n\s*\n/)
+              .map(paragraph => `<p>${paragraph.replace(/\n/g, "<br>")}</p>`)
+              .join("");
+          contentElement.innerHTML = content;
+        } else {
+          contentElement.innerHTML = "<p>No content available.</p>";
+        }
+
+        // UPDATE PAGE TITLE
+        document.title = `${blog.title || "Blog"} | Rextech Studios`;
+
+      } catch (error) {
+        console.error("Blog detail fetch error:", error);
+        showBlogError("Unable to Load Blog", "There was a problem loading this blog. Please try again.");
+      }
+
+    });
+
+    /* =========================================================
+       ERROR HANDLER
+    ========================================================== */
+
+    function showBlogError(title, message) {
+      const page = document.querySelector(".blog-detail-page");
+      page.innerHTML = `
+                <div class="blog-error">
+                    <h2>${title}</h2>
+                    <p>${message}</p>
+                    <a href="blog.html" class="blog-back-link" style="margin-top:25px;">
+                        &larr; Back to Blog
+                    </a>
+                </div>
+            `;
     }
-</script>
+
+  </script>
 </body>
-
 </html>
-
-
