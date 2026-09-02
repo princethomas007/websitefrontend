@@ -236,15 +236,15 @@
 
               // Set Meta
               const date = new Date(blog.created_at).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
-              document.getElementById("postMeta").innerText = By  | ;
+              document.getElementById("postMeta").innerText = `By ${blog.author || "Rextech Studios"} | ${date}`;
 
               // Set Image
               const imageUrl = blog.image && blog.image.startsWith("http")
                 ? blog.image
-                : https://rextech-django-production.up.railway.app;
+                : `https://rextech-django-production.up.railway.app${blog.image}`;
               
               if (blog.image) {
-                  document.getElementById("postImage").innerHTML = <img src="" alt="" style="width: 100%; height: auto; display: block; object-fit: cover;">;
+                  document.getElementById("postImage").innerHTML = `<img src="${imageUrl}" alt="${blog.title}" style="width: 100%; height: auto; display: block; object-fit: cover;">`;
               }
 
               // Set Content - preserving paragraphs!
@@ -252,7 +252,7 @@
                   // split by double newlines or single newlines and wrap in <p>
                   const paragraphs = blog.content.split(/
 +/).filter(p => p.trim() !== '');
-                  const formattedContent = paragraphs.map(p => <p style="margin-bottom: 20px;"></p>).join('');
+                  const formattedContent = paragraphs.map(p => `<p style="margin-bottom: 20px;">${p}</p>`).join('');
                   document.getElementById("postContent").innerHTML = formattedContent;
               } else {
                   document.getElementById("postContent").innerHTML = "<p>No content available.</p>";
