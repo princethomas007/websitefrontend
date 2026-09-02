@@ -140,38 +140,7 @@
             By Rextech Studios
         </p>
     </div>
-        <div class="page-hero-badge reveal rd1">Blog</div>
-        <h1 class="reveal rd2 hero-custom-title"
-            style="opacity:1 !important; transform:none !important; filter:none !important; animation:none !important;">
-            <span class="hero-word" style="animation-delay: 1.30s;">Insights</span> <span class="hero-word"
-                style="animation-delay: 1.35s;">&amp;</span> <span class="hero-word"
-                style="animation-delay: 1.40s;">Innovations</span>
-        </h1>
-        <p class="rd3 hero-custom-sub"
-            style="opacity:1 !important; transform:none !important; filter:none !important; animation:none !important; margin-bottom: 30px;">
-            <span class="hero-sub-word" style="animation-delay: 1.65s;">Stay</span> <span class="hero-sub-word"
-                style="animation-delay: 1.70s;">updated</span> <span class="hero-sub-word"
-                style="animation-delay: 1.75s;">with</span> <span class="hero-sub-word"
-                style="animation-delay: 1.80s;">Rextech</span> <span class="hero-sub-word"
-                style="animation-delay: 1.85s;">Studios'</span> <span class="hero-sub-word"
-                style="animation-delay: 1.90s;">blog</span> <span class="hero-sub-word"
-                style="animation-delay: 1.95s;">on</span> <span class="hero-sub-word"
-                style="animation-delay: 2.00s;">mobile</span> <span class="hero-sub-word"
-                style="animation-delay: 2.05s;">apps,</span> <span class="hero-sub-word"
-                style="animation-delay: 2.10s;">game</span> <span class="hero-sub-word"
-                style="animation-delay: 2.15s;">development,</span> <span class="hero-sub-word"
-                style="animation-delay: 2.20s;">AR/VR,</span> <span class="hero-sub-word"
-                style="animation-delay: 2.25s;">and</span> <span class="hero-sub-word"
-                style="animation-delay: 2.30s;">metaverse</span> <span class="hero-sub-word"
-                style="animation-delay: 2.35s;">innovations.</span> <span class="hero-sub-word"
-                style="animation-delay: 2.40s;">Stay</span> <span class="hero-sub-word"
-                style="animation-delay: 2.45s;">informed</span> <span class="hero-sub-word"
-                style="animation-delay: 2.50s;">with</span> <span class="hero-sub-word"
-                style="animation-delay: 2.55s;">the</span> <span class="hero-sub-word"
-                style="animation-delay: 2.60s;">latest</span> <span class="hero-sub-word"
-                style="animation-delay: 2.65s;">tech</span> <span class="hero-sub-word"
-                style="animation-delay: 2.70s;">trends.</span>
-        </p>
+        
     </div>
     <section class="section blog-section" style="background:var(--black); padding-top: 20px;">
         <div class="blog-content reveal rd1">
@@ -245,7 +214,9 @@
 
       if (!blogId) {
           document.getElementById("postTitle").innerText = "Blog Post Not Found";
-          document.getElementById("postContent").innerHTML = "<p>Invalid link. Please return to the blog page.</p>";
+          document.getElementById("postContent").innerHTML = "<p>No blog ID provided in the URL. Please go back to the blog page.</p>";
+          document.getElementById("postCategory").innerText = "Error";
+          document.getElementById("postMeta").innerText = "";
       } else {
           fetch("https://rextech-django-production.up.railway.app/api/blog/")
             .then(response => response.json())
@@ -255,6 +226,7 @@
               if (!blog) {
                   document.getElementById("postTitle").innerText = "Blog Post Not Found";
                   document.getElementById("postContent").innerHTML = "<p>We couldn't find this post.</p>";
+                  document.getElementById("postCategory").innerText = "Error";
                   return;
               }
 
@@ -272,18 +244,24 @@
                 : https://rextech-django-production.up.railway.app;
               
               if (blog.image) {
-                  document.getElementById("postImage").innerHTML = <img src="" alt="" style="width: 100%; height: auto; display: block;">;
+                  document.getElementById("postImage").innerHTML = <img src="" alt="" style="width: 100%; height: auto; display: block; object-fit: cover;">;
               }
 
-              // Set Content (Formatting newlines to paragraphs)
-              const formattedContent = blog.content ? blog.content.replace(/
-/g, '<br>') : "No content available.";
-              document.getElementById("postContent").innerHTML = formattedContent;
+              // Set Content - preserving paragraphs!
+              if (blog.content) {
+                  // split by double newlines or single newlines and wrap in <p>
+                  const paragraphs = blog.content.split(/
++/).filter(p => p.trim() !== '');
+                  const formattedContent = paragraphs.map(p => <p style="margin-bottom: 20px;"></p>).join('');
+                  document.getElementById("postContent").innerHTML = formattedContent;
+              } else {
+                  document.getElementById("postContent").innerHTML = "<p>No content available.</p>";
+              }
             })
             .catch(err => {
                 console.error("Blog fetch error:", err);
                 document.getElementById("postTitle").innerText = "Error Loading Post";
-                document.getElementById("postContent").innerHTML = "<p>Please try again later.</p>";
+                document.getElementById("postContent").innerHTML = "<p>Please try again later. The server might be asleep.</p>";
             });
       }
     </script>
