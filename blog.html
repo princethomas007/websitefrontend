@@ -256,7 +256,7 @@
                   <span>${blog.author || "Rextech Studios"}</span>
                   <span>${date}</span>
                 </div>
-                <a href="blog-post.html?id=" class="blog-read" style="text-decoration:none; color:inherit;">Read more &rarr;</a>
+                <a href="blog-post.html?id=${blog.id}" class="blog-read" style="text-decoration:none; color:inherit;">Read more &rarr;</a>
               </div>
             `;
             blogGrid.appendChild(card);
