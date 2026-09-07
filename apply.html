@@ -352,9 +352,36 @@
 
     <script src="assets/main.js"></script>
 
-    <script>
+        <script>
         const applicationForm = document.getElementById("applicationForm");
         const formStatus = document.getElementById("formStatus");
+        const positionSelect = document.getElementById("position");
+
+        // Dynamically fetch available jobs and populate the dropdown
+        async function loadJobs() {
+            try {
+                const response = await fetch("https://rextech-django-production.up.railway.app/api/careers/");
+                if (response.ok) {
+                    const jobs = await response.json();
+                    if (jobs.length > 0) {
+                        positionSelect.innerHTML = '<option value="" selected disabled>Select a position</option>';
+                        jobs.forEach(job => {
+                            const option = document.createElement("option");
+                            option.value = job.id;
+                            option.textContent = job.role;
+                            positionSelect.appendChild(option);
+                        });
+                    } else {
+                        positionSelect.innerHTML = '<option value="" selected disabled>No positions currently open</option>';
+                    }
+                }
+            } catch (error) {
+                console.error("Error loading jobs:", error);
+            }
+        }
+
+        // Load jobs when page loads
+        document.addEventListener("DOMContentLoaded", loadJobs);
 
         applicationForm.addEventListener("submit", async function (event) {
             event.preventDefault();
@@ -362,12 +389,33 @@
             formStatus.textContent = "Submitting application...";
             formStatus.classList.add("show");
 
-            const formData = new FormData(applicationForm);
+            // Map the frontend fields to the backend serializer expectations
+            const formElementData = new FormData(applicationForm);
+            const mappedData = new FormData();
+            
+            // Required backend fields mapping
+            mappedData.append('job', formElementData.get('position')); // ID of JobOpening
+            mappedData.append('name', formElementData.get('fullName'));
+            mappedData.append('email', formElementData.get('email'));
+            mappedData.append('phone', formElementData.get('phone'));
+            mappedData.append('resume', formElementData.get('resume'));
+            
+            // Missing frontend fields but required by backend - give defaults
+            mappedData.append('education', 'Not provided');
+            mappedData.append('skills', formElementData.get('experience') || 'Not provided');
+            
+            // Optional backend fields mapping
+            if (formElementData.get('portfolio')) {
+                mappedData.append('portfolio_link', formElementData.get('portfolio'));
+            }
+            if (formElementData.get('message')) {
+                mappedData.append('motivation', formElementData.get('message'));
+            }
             
             try {
                 const response = await fetch("https://rextech-django-production.up.railway.app/api/careers/apply/", {
                     method: "POST",
-                    body: formData,
+                    body: mappedData,
                 });
                 
                 if (response.ok) {
@@ -375,7 +423,15 @@
                     applicationForm.reset();
                 } else {
                     const data = await response.json();
-                    formStatus.textContent = data.error || "An error occurred while submitting your application.";
+                    console.error("Backend Error Data:", data);
+                    // Extract first error message nicely
+                    let errorMsg = "An error occurred while submitting your application.";
+                    if (data.job) errorMsg = "Please select a valid job position.";
+                    else if (data.resume) errorMsg = "Resume error: " + data.resume[0];
+                    else if (data.name) errorMsg = "Name error: " + data.name[0];
+                    else if (data.error) errorMsg = data.error;
+                    
+                    formStatus.textContent = errorMsg;
                 }
             } catch (error) {
                 console.error("Error submitting application:", error);
