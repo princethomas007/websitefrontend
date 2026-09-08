@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apply Now | Rextech Studios</title>
+
+    <meta name="description"
+        content="Apply for career opportunities at Rextech Studios. Submit your application and join our team.">
+
+    <!-- Existing global stylesheet -->
+    <link rel="stylesheet" href="assets/style.css">
+
+    <!-- Apply page stylesheet -->
+    <link rel="stylesheet" href="assets/apply.css">
+
+    <!-- Your existing fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Figtree:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="apply-page">
+
+
+    <!-- =========================
+         APPLY HERO
+         ========================= -->
+    <section class="apply-hero">
+
+        <div class="apply-hero-inner">
+
+            <div class="apply-eyebrow">
+                JOIN REXTECH
+            </div>
+
+            <h1>
+                Build What's
+                Next.
+            </h1>
+
+            <p>
+                Tell us about yourself, your skills, and the kind of work
+                you would love to create with us.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         APPLICATION SECTION
+         ========================= -->
+    <main class="apply-section">
+
+        <div class="apply-layout">
+
+            <!-- LEFT SIDE -->
+            <div class="apply-intro">
+
+                <span class="apply-small-label">
+                    APPLICATION
+                </span>
+
+                <h2>
+                    Let's get to
+                    know you.
+                </h2>
+
+                <p>
+                    Fill in the details below and share your experience,
+                    skills, and work with us. We'll review your application
+                    and get back to you if there's a suitable opportunity.
+                </p>
+
+                <div class="apply-note">
+
+                    <div class="apply-note-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 3L14.7 8.5L21 9.4L16.5 13.8L17.6 20L12 17.1L6.4 20L7.5 13.8L3 9.4L9.3 8.5L12 3Z"
+                                stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+
+                    <div>
+                        <h3>What happens next?</h3>
+                        <p>
+                            Our team will review your application and
+                            contact you if your profile matches an
+                            available opportunity.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE — FORM -->
+            <div class="application-form-wrapper">
+
+                <form id="applicationForm" class="application-form">
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+
+                        <label for="fullName">
+                            Full Name <span>*</span>
+                        </label>
+
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+
+                    </div>
+
+
+                    <!-- Email + Phone -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email Address <span>*</span>
+                            </label>
+
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="phone">
+                                Phone Number <span>*</span>
+                            </label>
+
+                            <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Position + Experience -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="position">
+                                Position Applying For <span>*</span>
+                            </label>
+
+                            <select id="position" name="position" required>
+
+                                <option value="" selected disabled>
+                                    Select a position
+                                </option>
+
+                                <option value="software-developer">
+                                    Software Developer
+                                </option>
+
+                                <option value="web-developer">
+                                    Web Developer
+                                </option>
+
+                                <option value="game-developer">
+                                    Game Developer
+                                </option>
+
+                                <option value="game-artist">
+                                    Game Artist / Designer
+                                </option>
+
+                                <option value="ar-vr-developer">
+                                    AR/VR Developer
+                                </option>
+
+                                <option value="ui-ux-designer">
+                                    UI/UX Designer
+                                </option>
+
+                                <option value="business-growth">
+                                    Business & Growth
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="experience">
+                                Experience <span>*</span>
+                            </label>
+
+                            <select id="experience" name="experience" required>
+
+                                <option value="" selected disabled>
+                                    Select experience
+                                </option>
+
+                                <option value="fresher">
+                                    Fresher
+                                </option>
+
+                                <option value="0-1">
+                                    0–1 Year
+                                </option>
+
+                                <option value="1-3">
+                                    1–3 Years
+                                </option>
+
+                                <option value="3+">
+                                    3+ Years
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Portfolio -->
+                    <div class="form-group">
+
+                        <label for="portfolio">
+                            Portfolio / GitHub / LinkedIn
+                        </label>
+
+                        <input type="url" id="portfolio" name="portfolio" placeholder="https://">
+
+                    </div>
+
+
+                    <!-- Resume -->
+                    <div class="form-group">
+
+                        <label for="resume">
+                            Resume / CV <span>*</span>
+                        </label>
+
+                        <div class="file-upload">
+                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+
+                            <label for="resume" class="file-upload-label">
+                                <div class="file-upload-icon">↑</div>
+                                <div>
+                                    <strong>Upload your resume</strong>
+                                    <span>PDF, DOC or DOCX</span>
+                                </div>
+                            </label>
+
+                            <p class="file-name" id="fileName">No file selected</p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Message -->
+                    <div class="form-group">
+
+                        <label for="message">
+                            Cover Letter / Message
+                        </label>
+
+                        <textarea id="message" name="message" rows="6"
+                            placeholder="Tell us a little about yourself, your skills, and why you'd like to join Rextech..."></textarea>
+
+                    </div>
+
+
+                    <!-- Consent -->
+                    <div class="form-consent">
+
+                        <label>
+
+                            <input type="checkbox" id="consent" name="consent" required>
+
+                            <span>
+                                I confirm that the information provided is
+                                accurate.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- Submit -->
+                    <button type="submit" class="application-submit">
+
+                        Submit Application
+
+                        <span>→</span>
+
+                    </button>
+
+                    <p class="form-status" id="formStatus"></p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+    <footer class="site-footer">
+        <!-- Keep your existing footer from careers.html here -->
+    </footer>
+
+
+    <script src="assets/main.js"></script>
+
+    <script>
+        const applicationForm = document.getElementById("applicationForm");
+        const formStatus = document.getElementById("formStatus");
+        const positionSelect = document.getElementById("position");
+        const resumeInput = document.getElementById("resume");
+        const fileName = document.getElementById("fileName");
+
+        resumeInput.addEventListener("change", function () {
+            console.log("FILE CHANGE EVENT FIRED");
+            console.log("Files:", this.files);
+
+            if (this.files.length > 0) {
+                fileName.textContent = this.files[0].name;
+            } else {
+                fileName.textContent = "No file selected";
+            }
+        });
+        // Dynamically fetch available jobs and populate the dropdown
+        async function loadJobs() {
+            try {
+                const response = await fetch("https://rextech-django-production.up.railway.app/api/careers/");
+                if (response.ok) {
+                    const jobs = await response.json();
+                    if (jobs.length > 0) {
+                        positionSelect.innerHTML = '<option value="" selected disabled>Select a position</option>';
+                        jobs.forEach(job => {
+                            const option = document.createElement("option");
+                            option.value = job.id;
+                            option.textContent = job.role;
+                            positionSelect.appendChild(option);
+                        });
+                    } else {
+                        positionSelect.innerHTML = '<option value="" selected disabled>No positions currently open</option>';
+                    }
+                }
+            } catch (error) {
+                console.error("Error loading jobs:", error);
+            }
+        }
+
+        // Load jobs when page loads
+        document.addEventListener("DOMContentLoaded", loadJobs);
+
+        applicationForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            formStatus.textContent = "Submitting application...";
+            formStatus.classList.add("show");
+
+            // Map the frontend fields to the backend serializer expectations
+            const formElementData = new FormData(applicationForm);
+            const mappedData = new FormData();
+
+            // Required backend fields mapping
+            mappedData.append('job', formElementData.get('position')); // ID of JobOpening
+            mappedData.append('name', formElementData.get('fullName'));
+            mappedData.append('email', formElementData.get('email'));
+            mappedData.append('phone', formElementData.get('phone'));
+            mappedData.append('resume', formElementData.get('resume'));
+
+            // Missing frontend fields but required by backend - give defaults
+            mappedData.append('education', 'Not provided');
+            mappedData.append('skills', formElementData.get('experience') || 'Not provided');
+
+            // Optional backend fields mapping
+            if (formElementData.get('portfolio')) {
+                mappedData.append('portfolio_link', formElementData.get('portfolio'));
+            }
+            if (formElementData.get('message')) {
+                mappedData.append('motivation', formElementData.get('message'));
+            }
+
+            try {
+                const response = await fetch("https://rextech-django-production.up.railway.app/api/careers/apply/", {
+                    method: "POST",
+                    body: mappedData,
+                });
+
+                if (response.ok) {
+                    formStatus.textContent = "Your application has been submitted successfully!";
+                    applicationForm.reset();
+                } else {
+                    const data = await response.json();
+                    console.error("Backend Error Data:", data);
+                    // Extract first error message nicely
+                    let errorMsg = "An error occurred while submitting your application.";
+                    if (data.job) errorMsg = "Please select a valid job position.";
+                    else if (data.resume) errorMsg = "Resume error: " + data.resume[0];
+                    else if (data.name) errorMsg = "Name error: " + data.name[0];
+                    else if (data.error) errorMsg = data.error;
+
+                    formStatus.textContent = errorMsg;
+                }
+            } catch (error) {
+                console.error("Error submitting application:", error);
+                formStatus.textContent = "A network error occurred. Please try again.";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
