@@ -397,6 +397,13 @@
     font-size: 12px;
 }
 
+.file-name {
+    margin: 10px 2px 0;
+    color: #df7afe;
+    font-size: 13px;
+    line-height: 1.4;
+    word-break: break-word;
+}
 
 /* =========================
    CONSENT
