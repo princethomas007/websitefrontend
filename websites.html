@@ -471,7 +471,13 @@
 
         appsProjects.forEach(project => {
 
-          container.innerHTML += `
+          
+            let imageURL = project.cover_image;
+            if (imageURL && !imageURL.startsWith("http")) {
+              imageURL = `https://rextech-django-production.up.railway.app${imageURL}`;
+            }
+
+            container.innerHTML += `
             <a href="project-detail.html?id=${project.id}" class="project-card">
 
               <div class="project-image">
