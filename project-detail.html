@@ -2524,8 +2524,9 @@
 
                                         mediaGrid.innerHTML = "";
 
-                    if (data.youtube_video_url) {
-                        const ytMatch = data.youtube_video_url.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/);
+                    const finalYoutubeUrl = data.youtube_video_url || data.portfolio_youtube_url;
+                    if (finalYoutubeUrl) {
+                        const ytMatch = finalYoutubeUrl.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/);
                         const ytId = (ytMatch && ytMatch[2].length === 11) ? ytMatch[2] : null;
                         if (ytId) {
                             const ytItem = document.createElement("div");
@@ -2540,7 +2541,7 @@
                         data.image2,
                         data.image3,
                         data.image4,
-                        data.project_video
+                        finalYoutubeUrl ? null : data.project_video
                     ].filter(Boolean);
 
 
