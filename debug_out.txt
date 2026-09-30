@@ -1,0 +1,65 @@
+  class="btn btn-secondary"
+                >
+                    GitHub
+                </a>`
+                        ;
+                }
+
+
+                /* =====================================================
+                   PROJECT MEDIA SHOWCASE
+                ===================================================== */
+
+                const mediaGrid =
+                    document.getElementById("projectMediaGrid");
+
+                if (mediaGrid) {
+
+                    mediaGrid.innerHTML = "";
+
+                    const mediaItems = [
+                        data.image1,
+                        data.image2,
+                        data.image3,
+                        data.image4,
+                        data.project_video
+                    ].filter(Boolean);
+
+
+                    mediaItems.forEach(item => {
+
+                        let mediaURL = item;
+
+                        if (!mediaURL.startsWith("http")) {
+                            mediaURL = `${API_BASE}${mediaURL}`;
+                        }
+
+
+                        const mediaItem =
+                            document.createElement("div");
+
+                        mediaItem.className =
+                            "project-media-item";
+
+
+                        /* VIDEO */
+
+                        if (
+                            item.toLowerCase().includes(".mp4") ||
+                            item.toLowerCase().includes(".webm") ||
+                            item.toLowerCase().includes(".mov")
+                        ) {
+
+                            mediaItem.innerHTML = `
+                        <video
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            controls
+                        >
+                            <source
+                                src="${mediaURL}"
+                                type="video/mp4"
+                            >
+                  
