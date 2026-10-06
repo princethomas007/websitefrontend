@@ -2609,6 +2609,34 @@
                 }
 
 
+
+                /* =====================================================
+                   INJECT DYNAMIC PORTFOLIO SCHEMA
+                ===================================================== */
+                const existingSchema = document.getElementById("dynamic-portfolio-schema");
+                if (!existingSchema && typeof data !== 'undefined') {
+                    const schemaType = (data.category === "GAME") ? "VideoGame" : "SoftwareApplication";
+                    const schemaData = {
+                        "@context": "https://schema.org",
+                        "@type": schemaType,
+                        "name": data.title || "Project",
+                        "url": window.location.href
+                    };
+                    
+                    if (data.image1) {
+                        schemaData.image = data.image1.startsWith("http") ? data.image1 : `${API_BASE}${data.image1}`;
+                    }
+                    if (data.full_description) {
+                        schemaData.description = data.full_description.replace(/<[^>]*>?/gm, '').substring(0, 160);
+                    }
+                    
+                    const script = document.createElement("script");
+                    script.type = "application/ld+json";
+                    script.id = "dynamic-portfolio-schema";
+                    script.text = JSON.stringify(schemaData);
+                    document.head.appendChild(script);
+                }
+
             } catch (error) {
 
                 console.error(
