@@ -2611,6 +2611,19 @@
 
 
                 /* =====================================================
+                   UPDATE META DESCRIPTION
+                ===================================================== */
+                let metaDesc = document.querySelector('meta[name="description"]');
+                if (!metaDesc) {
+                    metaDesc = document.createElement('meta');
+                    metaDesc.name = "description";
+                    document.head.appendChild(metaDesc);
+                }
+                let rawText = data.full_description || data.challenge || data.solution || "Explore this project by Rextech Studios.";
+                let cleanText = rawText.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+                metaDesc.content = cleanText.substring(0, 150) + (cleanText.length > 150 ? '...' : '');
+
+                /* =====================================================
                    INJECT DYNAMIC PORTFOLIO SCHEMA
                 ===================================================== */
                 const existingSchema = document.getElementById("dynamic-portfolio-schema");
