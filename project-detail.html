@@ -7,7 +7,7 @@
     <title>Project Development | Rextech Studios</title>
     <meta name="description"
         content="Enterprise-grade AR/VR solutions by Rextech Studios. Immersive experiences for training, marketing, and entertainment.">
-    <link rel="icon" href="assets/favicon.png">
+    <link rel="icon" href="/assets/images/framer-favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -1758,7 +1758,7 @@
 
     <!-- NAV -->
     <nav class="nav">
-        <a href="/"><img src="assets/images/rextech png logo for web.png" alt="Rextech Studios"
+        <a href="/"><img src="assets/images/rextech-studios-logo.png" alt="Rextech Studios logo"
                 class="nav-logo"></a>
         <ul class="nav-links">
             <div class="nav-indicator"></div>
@@ -2060,7 +2060,7 @@
                 </span>
 
                 <h2>
-                    Results &amp; Impact
+                    Results &amp; Key Outcomes
                 </h2>
 
                 <p>
@@ -2077,9 +2077,7 @@
 
                     <span class="result-number">01</span>
 
-                    <h3>
-                        Engaging Experience
-                    </h3>
+                    
 
                     <p id="projectResult1">
                         Created an immersive and intuitive experience
@@ -2093,9 +2091,7 @@
 
                     <span class="result-number">02</span>
 
-                    <h3>
-                        Reliable Performance
-                    </h3>
+                    
 
                     <p id="projectResult2">
                         Optimized the experience to provide smooth and
@@ -2109,9 +2105,7 @@
 
                     <span class="result-number">03</span>
 
-                    <h3>
-                        Scalable Solution
-                    </h3>
+                    
 
                     <p id="projectResult3">
                         Built the project with a flexible architecture that
@@ -2171,7 +2165,7 @@
     <footer>
         <div class="footer-top">
             <div>
-                <img src="assets/images/rextech png logo for web.png" alt="Rextech Studios" class="footer-logo">
+                <img src="assets/images/rextech-studios-logo.png" alt="Rextech Studios logo" class="footer-logo">
                 <p class="footer-tagline">Building next-generation games, AR/VR, and apps from India.</p>
             </div>
             <div class="footer-cols">
@@ -2608,6 +2602,34 @@
 
                 }
 
+
+
+                /* =====================================================
+                   INJECT DYNAMIC PORTFOLIO SCHEMA
+                ===================================================== */
+                const existingSchema = document.getElementById("dynamic-portfolio-schema");
+                if (!existingSchema && typeof data !== 'undefined') {
+                    const schemaType = (data.category === "GAME") ? "VideoGame" : "SoftwareApplication";
+                    const schemaData = {
+                        "@context": "https://schema.org",
+                        "@type": schemaType,
+                        "name": data.title || "Project",
+                        "url": window.location.href
+                    };
+                    
+                    if (data.image1) {
+                        schemaData.image = data.image1.startsWith("http") ? data.image1 : `${API_BASE}${data.image1}`;
+                    }
+                    if (data.full_description) {
+                        schemaData.description = data.full_description.replace(/<[^>]*>?/gm, '').substring(0, 160);
+                    }
+                    
+                    const script = document.createElement("script");
+                    script.type = "application/ld+json";
+                    script.id = "dynamic-portfolio-schema";
+                    script.text = JSON.stringify(schemaData);
+                    document.head.appendChild(script);
+                }
 
             } catch (error) {
 

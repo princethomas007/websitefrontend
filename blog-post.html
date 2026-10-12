@@ -10,7 +10,7 @@
   <meta name="description"
     content="Insights and articles from Rextech Studios on technology, games, AR/VR, mobile apps and digital experiences.">
 
-  <link rel="icon" href="assets/favicon.png">
+  <link rel="icon" href="/assets/images/framer-favicon.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -541,7 +541,7 @@
   <nav class="nav">
 
     <a href="/">
-      <img src="assets/images/rextech png logo for web.png" alt="Rextech Studios" class="nav-logo">
+      <img src="assets/images/rextech-studios-logo.png" alt="Rextech Studios logo" class="nav-logo">
     </a>
 
 
@@ -746,7 +746,7 @@
 
       <div>
 
-        <img src="assets/images/rextech png logo for web.png" alt="Rextech Studios" class="footer-logo">
+        <img src="assets/images/rextech-studios-logo.png" alt="Rextech Studios logo" class="footer-logo">
 
 
         <p class="footer-tagline">
@@ -1000,6 +1000,35 @@
 
         // UPDATE PAGE TITLE
         document.title = `${blog.title || "Blog"} | Rextech Studios`;
+
+        // INJECT DYNAMIC BLOGPOSTING SCHEMA
+        const existingSchema = document.getElementById("dynamic-blog-schema");
+        if (!existingSchema) {
+            let isoDate = "";
+            if (blog.created_at) {
+                isoDate = new Date(blog.created_at).toISOString();
+            }
+            
+            const schemaData = {
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "headline": blog.title || "Untitled Blog",
+                "image": imageUrl || "",
+                "datePublished": isoDate,
+                "author": {
+                    "@type": "Person",
+                    "name": blog.author || "Rextech Studios"
+                },
+                "url": window.location.href,
+                "description": (blog.content || "").replace(/<[^>]*>?/gm, '').substring(0, 160)
+            };
+
+            const script = document.createElement("script");
+            script.type = "application/ld+json";
+            script.id = "dynamic-blog-schema";
+            script.text = JSON.stringify(schemaData);
+            document.head.appendChild(script);
+        }
 
       } catch (error) {
         console.error("Blog detail fetch error:", error);

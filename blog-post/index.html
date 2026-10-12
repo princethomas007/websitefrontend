@@ -10,7 +10,7 @@
   <meta name="description"
     content="Insights and articles from Rextech Studios on technology, games, AR/VR, mobile apps and digital experiences.">
 
-  <link rel="icon" href="assets/favicon.png">
+  <link rel="icon" href="/assets/images/framer-favicon.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -541,7 +541,7 @@
   <nav class="nav">
 
     <a href="/">
-      <img src="/assets/images/rextech png logo for web.png" alt="Rextech Studios" class="nav-logo">
+      <img src="/assets/images/rextech-studios-logo.png" alt="Rextech Studios logo" class="nav-logo">
     </a>
 
 
@@ -746,7 +746,7 @@
 
       <div>
 
-        <img src="/assets/images/rextech png logo for web.png" alt="Rextech Studios" class="footer-logo">
+        <img src="/assets/images/rextech-studios-logo.png" alt="Rextech Studios logo" class="footer-logo">
 
 
         <p class="footer-tagline">
@@ -997,6 +997,18 @@
         } else {
           contentElement.innerHTML = "<p>No content available.</p>";
         }
+
+        
+        // UPDATE META DESCRIPTION
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+            metaDesc = document.createElement('meta');
+            metaDesc.name = "description";
+            document.head.appendChild(metaDesc);
+        }
+        let rawText = blog.content || "Read this blog post from Rextech Studios.";
+        let cleanText = rawText.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        metaDesc.content = cleanText.substring(0, 150) + (cleanText.length > 150 ? '...' : '');
 
         // UPDATE PAGE TITLE
         document.title = `${blog.title || "Blog"} | Rextech Studios`;
