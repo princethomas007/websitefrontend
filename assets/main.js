@@ -167,18 +167,13 @@ function initNav() {
   // active link
   let current = pageKey(location.pathname);
 
-  const portfolioPages = [
-  "portfolio",
-  "arvr",
-  "games",
-  "apps",
-  "websites",
-  "project-detail"
-  ];
+  const servicePages = ["arvr", "games", "apps", "websites"];
 
-if (portfolioPages.includes(current)) {
-  current = "portfolio";
-}
+  if (servicePages.includes(current)) {
+    current = "service";
+  } else if (current === "project-detail") {
+    current = "portfolio";
+  }
   document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
     if (pageKey(a.getAttribute('href')) === current) {
       a.classList.add('active');
