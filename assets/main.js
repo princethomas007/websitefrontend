@@ -25,13 +25,13 @@ function initHero() {
     const r = 8 + Math.random() * 6;
     const theta = Math.random() * Math.PI * 2;
     const phi = Math.acos(2 * Math.random() - 1);
-    positions[i*3]   = r * Math.sin(phi) * Math.cos(theta);
-    positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
-    positions[i*3+2] = r * Math.cos(phi);
+    positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+    positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+    positions[i * 3 + 2] = r * Math.cos(phi);
 
     const t = Math.random();
     const c = t < 0.4 ? purple : t < 0.7 ? purpleLight : white;
-    colors[i*3] = c.r; colors[i*3+1] = c.g; colors[i*3+2] = c.b;
+    colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
     sizes[i] = 0.5 + Math.random() * 2.5;
   }
 
@@ -165,14 +165,18 @@ function initNav() {
   }
 
   // active link
+  // active link
   let current = pageKey(location.pathname);
 
-  const servicePages = ["arvr", "games", "apps", "websites"];
+  // Showcase pages reached from Portfolio keep Portfolio highlighted
+  const portfolioPages = ["arvr", "games", "apps", "websites", "project-detail"];
+  // Service detail pages reached from the Services carousel highlight Services
+  const servicePages = ["ar-vr-development", "game-development", "app-development", "web-development"];
 
-  if (servicePages.includes(current)) {
-    current = "service";
-  } else if (current === "project-detail") {
+  if (portfolioPages.includes(current)) {
     current = "portfolio";
+  } else if (servicePages.includes(current)) {
+    current = "service";
   }
   document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
     if (pageKey(a.getAttribute('href')) === current) {
