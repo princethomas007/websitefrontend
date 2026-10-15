@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--
+  Images used on this page (all stored in assets/images/):
+       - assets/images/arvr-ar-animal-experience.jpg
+       - assets/images/arvr-fire-safety-vr.jpg
+       - assets/images/arvr-orama-vr.jpg
+       - assets/images/framer-favicon.png
+       - assets/images/rextech png logo for web.png
+       - assets/images/svc-headset.webp
+-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AR/VR Development | Rextech Studios</title>
+    <meta name="description"
+        content="AR/VR development by Rextech Studios — immersive augmented, virtual and mixed reality experiences for training, marketing, real estate and entertainment." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://rextechstudios.com/ar-vr-development.html" />
+
+    <meta property="og:title" content="AR/VR Development | Rextech Studios" />
+    <meta property="og:description"
+        content="Immersive AR, VR and mixed reality experiences built by Rextech Studios." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rextechstudios.com/ar-vr-development.html" />
+    <link href="/assets/images/framer-favicon.png" rel="icon" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;900&amp;family=DM+Sans:wght@300;400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="/assets/style.css" rel="stylesheet" />
+    <link href="/assets/app-dev.css?v=7" rel="stylesheet" />
+    <link href="/assets/arvr-dev.css?v=3" rel="stylesheet" />
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-35PN29619F"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-35PN29619F');</script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "AR/VR Development",
+      "provider": { "@type": "Organization", "name": "Rextech Studios", "url": "https://rextechstudios.com/" },
+      "description": "Augmented, virtual and mixed reality application development using Unity XR, ARCore, ARKit and Meta Quest."
+    }
+  </script>
+</head>
+
+<body>
+    <!-- icon sprite -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <symbol id="i-headset" viewBox="0 0 24 24">
+                <path
+                    d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-3.5l-1.7-2.5h-3.6L8.5 17H5a2 2 0 0 1-2-2z" />
+            </symbol>
+            <symbol id="i-cube" viewBox="0 0 24 24">
+                <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9" />
+            </symbol>
+            <symbol id="i-scan" viewBox="0 0 24 24">
+                <path
+                    d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 12h8" />
+            </symbol>
+            <symbol id="i-home" viewBox="0 0 24 24">
+                <path d="M4 11l8-7 8 7M6 10v10h12V10M10 20v-5h4v5" />
+            </symbol>
+            <symbol id="i-cap" viewBox="0 0 24 24">
+                <path d="M2 9l10-5 10 5-10 5zM6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5" />
+            </symbol>
+            <symbol id="i-bag" viewBox="0 0 24 24">
+                <path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2" />
+            </symbol>
+            <symbol id="i-gamepad" viewBox="0 0 24 24">
+                <path
+                    d="M7 8h10a4 4 0 0 1 4 4v1a3 3 0 0 1-5.5 1.6L15 14H9l-.5.6A3 3 0 0 1 3 13v-1a4 4 0 0 1 4-4zM8 10.5v3M6.5 12h3M16 11h.01M18 12.5h.01" />
+            </symbol>
+            <symbol id="i-gear" viewBox="0 0 24 24">
+                <path
+                    d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" />
+            </symbol>
+            <symbol id="i-clip" viewBox="0 0 24 24">
+                <path d="M8 4h8v3H8zM6 5.5h-.5A1.5 1.5 0 0 0 4 7v13h16V7a1.5 1.5 0 0 0-1.5-1.5H18M8 12h8M8 16h5" />
+            </symbol>
+            <symbol id="i-pen" viewBox="0 0 24 24">
+                <path d="M4 20l1-4L16 5l3 3L8 19zM14 7l3 3" />
+            </symbol>
+            <symbol id="i-code" viewBox="0 0 24 24">
+                <path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14" />
+            </symbol>
+            <symbol id="i-shield" viewBox="0 0 24 24">
+                <path d="M12 3l8 3v6c0 4.5-3.2 7.6-8 9-4.8-1.4-8-4.5-8-9V6zM8.5 12l2.5 2.5 4.5-5" />
+            </symbol>
+            <symbol id="i-rocket" viewBox="0 0 24 24">
+                <path d="M5 19c0-3 1-4 3-4M14 4c3 0 6 3 6 6-2 4-5 6-8 7l-5-5c1-3 3-6 7-8zM15 9.5h.01M9 15l-2 4 4-2" />
+            </symbol>
+            <symbol id="i-support" viewBox="0 0 24 24">
+                <path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v5H4zM17 14h3v5h-3zM20 19c0 1.5-2 2-5 2" />
+            </symbol>
+            <symbol id="i-bolt" viewBox="0 0 24 24">
+                <path d="M13 2 5 13.5h6L10 22l9-12h-6z" />
+            </symbol>
+            <symbol id="i-layers" viewBox="0 0 24 24">
+                <path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5" />
+            </symbol>
+            <symbol id="i-phone" viewBox="0 0 24 24">
+                <path
+                    d="M8 3h8a1.5 1.5 0 0 1 1.5 1.5v15A1.5 1.5 0 0 1 16 21H8a1.5 1.5 0 0 1-1.5-1.5v-15A1.5 1.5 0 0 1 8 3zM11 18h2" />
+            </symbol>
+            <symbol id="i-spark" viewBox="0 0 24 24">
+                <path
+                    d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM18 16l.8 2.2L21 19l-2.2.8L18 22l-.8-2.2L15 19l2.2-.8z" />
+            </symbol>
+        </defs>
+    </svg>
+
+    <nav class="nav">
+        <a href="/"><img alt="Rextech Studios" class="nav-logo"
+                src="/assets/images/rextech png logo for web.png" /></a>
+        <ul class="nav-links">
+            <div class="nav-indicator"></div>
+            <li><a href="/">Home</a></li>
+            <li><a href="/service/">Services</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/portfolio/">Portfolio</a></li>
+            <li><a href="/courses/">Courses</a></li>
+            <li><a href="/careers/">Careers</a></li>
+        </ul>
+        <a class="nav-cta" href="/contact/">Contact Us</a>
+        <button aria-label="Menu" class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu"><a href="/">Home</a><a href="/service/">Services</a><a
+            href="/about/">About</a><a href="/blog/">Blog</a><a href="/portfolio/">Portfolio</a><a
+            href="/courses/">Courses</a><a href="/careers/">Careers</a><a class="mob-cta" href="/contact/">Contact Us</a></div>
+
+    <!-- HERO -->
+    <header class="ad-hero">
+        <div class="ad-hero-inner">
+            <div class="ad-copy">
+                <nav class="ad-crumb" aria-label="Breadcrumb">
+                    <a href="/">Home</a><i>&gt;</i><a href="/service/">Services</a><i>&gt;</i><b>AR/VR
+                        Development</b>
+                </nav>
+                <h1 class="ad-title"><span>AR/VR</span><span class="ad-grad">Development</span></h1>
+                <p class="ad-lead">Immersive experiences that blend the real and the virtual.</p>
+                <p class="ad-text">We design and develop augmented, virtual and mixed reality applications for training,
+                    marketing, real estate and entertainment — built for headsets, phones and the web.</p>
+                <div class="ad-cta">
+                    <a href="/contact/" class="btn btn-primary">Start Your Project →</a>
+                    <a href="/arvr/" class="btn btn-secondary">View Our Work →</a>
+                </div>
+            </div>
+            <div class="ad-stage" aria-label="VR headset">
+                <span class="vr-stage-glow"></span>
+                <img class="vr-hero-img" src="/assets/images/svc-headset.webp"
+                    alt="VR headset showcasing an immersive experience by Rextech Studios" width="1100" height="709"
+                    fetchpriority="high" />
+            </div>
+        </div>
+    </header>
+
+    <!-- REALITIES -->
+    <section class="ad-sec" id="platforms">
+        <div class="ad-wrap">
+            <div class="ad-head reveal">
+                <span class="ad-pill">What We Offer</span>
+                <h2 class="ad-h2">Three Ways to <span class="ad-grad">Extend Reality</span></h2>
+                <p class="ad-sub">Whether you want to overlay digital content on the real world or transport users
+                    somewhere new, we build it.</p>
+            </div>
+            <div class="ad-plat vr-plat">
+                <article class="ad-glass plat-card" data-wr>
+                    <div class="plat-top">
+                        <span class="ad-icon"><svg class="stk" aria-hidden="true">
+                                <use href="#i-scan" />
+                            </svg></span>
+                        <h3>AR Development<small>Augmented reality on phones &amp; glasses</small></h3>
+                    </div>
+                    <ul class="plat-list">
+                        <li>Image-tracked and markerless AR</li>
+                        <li>ARCore &amp; ARKit mobile apps</li>
+                        <li>3D product visualisation</li>
+                        <li>WebAR — no app install needed</li>
+                        <li>Face and surface tracking</li>
+                    </ul>
+                </article>
+                <article class="ad-glass plat-card" data-wr>
+                    <div class="plat-top">
+                        <span class="ad-icon"><svg class="stk" aria-hidden="true">
+                                <use href="#i-headset" />
+                            </svg></span>
+                        <h3>VR Development<small>Fully immersive virtual worlds</small></h3>
+                    </div>
+                    <ul class="plat-list">
+                        <li>Meta Quest &amp; PC VR applications</li>
+                        <li>Interactive 3D environments</li>
+                        <li>Hand tracking and controller input</li>
+                        <li>Multiplayer and social VR</li>
+                        <li>Tuned for standalone headsets</li>
+                    </ul>
+                </article>
+                <article class="ad-glass plat-card" data-wr>
+                    <div class="plat-top">
+                        <span class="ad-icon"><svg class="stk" aria-hidden="true">
+                                <use href="#i-cube" />
+                            </svg></span>
+                        <h3>Mixed Reality<small>Digital objects anchored in real space</small></h3>
+                    </div>
+                    <ul class="plat-list">
+                        <li>Passthrough and spatial anchors</li>
+                        <li>Room scanning and occlusion</li>
+                        <li>Hybrid AR/VR experiences</li>
+                        <li>Industrial and enterprise MR tools</li>
+                        <li>Cross-device experiences</li>
+                    </ul>
+                </article>
+            </div>
+            <div class="vr-tech reveal">
+                <span>Unity XR</span><span>ARCore</span><span>ARKit</span><span>Meta Quest
+                    SDK</span><span>OpenXR</span><span>WebXR</span><span>Blender</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section class="ad-sec" id="what-we-build">
+        <div class="ad-wrap">
+            <div class="ad-head reveal">
+                <span class="ad-pill">Use Cases</span>
+                <h2 class="ad-h2">Immersive Tech for <span class="ad-grad">Every Industry</span></h2>
+                <p class="ad-sub">From showrooms to simulators, we turn ideas into experiences people remember.</p>
+            </div>
+            <div class="ad-build">
+                <article class="ad-glass bld-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-cap" />
+                        </svg></span>
+                    <h3>Training &amp; Simulation</h3>
+                    <p>Safe, repeatable hands-on training for staff and students.</p>
+                </article>
+                <article class="ad-glass bld-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-home" />
+                        </svg></span>
+                    <h3>Real Estate Walkthroughs</h3>
+                    <p>Explore properties in VR or place them on site in AR.</p>
+                </article>
+                <article class="ad-glass bld-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-bag" />
+                        </svg></span>
+                    <h3>AR Product Try-On</h3>
+                    <p>Let customers preview products in their own space.</p>
+                </article>
+                <article class="ad-glass bld-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-spark" />
+                        </svg></span>
+                    <h3>Brand Activations</h3>
+                    <p>Campaigns and events built around interactive AR and VR.</p>
+                </article>
+                <article class="ad-glass bld-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-gamepad" />
+                        </svg></span>
+                    <h3>VR Games</h3>
+                    <p>Immersive gameplay for Quest and PC VR.</p>
+                </article>
+                <article class="ad-glass bld-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-layers" />
+                        </svg></span>
+                    <h3>Virtual Showrooms</h3>
+                    <p>Walk-in 3D showrooms for retail, auto and design.</p>
+                </article>
+                <article class="ad-glass bld-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-gear" />
+                        </svg></span>
+                    <h3>Industrial &amp; Enterprise</h3>
+                    <p>Remote assistance, digital twins and maintenance guides.</p>
+                </article>
+                <article class="ad-glass bld-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-code" />
+                        </svg></span>
+                    <h3>Custom XR Solutions</h3>
+                    <p>Something unique? We will design and build it from scratch.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="ad-sec" id="process">
+        <div class="ad-wrap">
+            <div class="ad-head">
+                <span class="ad-pill">Development Process</span>
+                <h2 class="ad-h2">From Concept to <span class="ad-grad">Immersion</span></h2>
+                <p class="ad-sub">A clear, transparent workflow that keeps you involved at every stage.</p>
+            </div>
+            <div class="ad-steps">
+                <div class="step">
+                    <div class="step-node"><svg>
+                            <use href="#i-clip" />
+                        </svg></div><em>01</em>
+                    <h3>Discovery</h3>
+                </div>
+                <div class="step">
+                    <div class="step-node"><svg>
+                            <use href="#i-pen" />
+                        </svg></div><em>02</em>
+                    <h3>3D &amp; UX Design</h3>
+                </div>
+                <div class="step">
+                    <div class="step-node"><svg>
+                            <use href="#i-code" />
+                        </svg></div><em>03</em>
+                    <h3>Development</h3>
+                </div>
+                <div class="step">
+                    <div class="step-node"><svg>
+                            <use href="#i-shield" />
+                        </svg></div><em>04</em>
+                    <h3>Device Testing</h3>
+                </div>
+                <div class="step">
+                    <div class="step-node"><svg>
+                            <use href="#i-rocket" />
+                        </svg></div><em>05</em>
+                    <h3>Deployment</h3>
+                </div>
+                <div class="step">
+                    <div class="step-node"><svg>
+                            <use href="#i-support" />
+                        </svg></div><em>06</em>
+                    <h3>Support</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED -->
+    <section class="ad-sec" id="featured">
+        <div class="ad-wrap">
+            <div class="ad-head reveal">
+                <span class="ad-pill">Featured AR/VR Projects</span>
+                <h2 class="ad-h2">Experiences We've <span class="ad-grad">Shipped</span></h2>
+                <p class="ad-sub">A look at some of the immersive products we've designed and built.</p>
+            </div>
+            <div class="ad-feat">
+                <a class="ad-glass feat-card vr-feat reveal" href="/project-detail/?id=53">
+                    <div class="feat-top"><span class="feat-tag">VR Education Experience</span>
+                        <h3>Orama VR</h3>
+                        <p>An interactive VR learning experience that helps students understand climate change through
+                            immersive exploration and simulations.</p>
+                    </div>
+                    <div class="feat-stage"><img src="/assets/images/arvr-orama-vr.jpg" alt="Orama VR cover"
+                            loading="lazy"></div>
+                </a>
+                <a class="ad-glass feat-card vr-feat reveal" href="/project-detail/?id=55">
+                    <div class="feat-top"><span class="feat-tag">VR Training Simulation</span>
+                        <h3>VR Fire Safety Training Simulator</h3>
+                        <p>An immersive VR training experience that teaches fire hazard identification and the correct
+                            use of fire extinguishers in a safe, controlled setting.</p>
+                    </div>
+                    <div class="feat-stage"><img src="/assets/images/arvr-fire-safety-vr.jpg"
+                            alt="VR Fire Safety Training Simulator cover" loading="lazy"></div>
+                </a>
+                <a class="ad-glass feat-card vr-feat reveal" href="/project-detail/?id=54">
+                    <div class="feat-top"><span class="feat-tag">Interactive AR Installation</span>
+                        <h3>Interactive AR Animal Experience</h3>
+                        <p>A camera-based AR installation that uses real-time human tracking to bring virtual wildlife
+                            to life on a large LED display.</p>
+                    </div>
+                    <div class="feat-stage"><img src="/assets/images/arvr-ar-animal-experience.jpg"
+                            alt="Interactive AR Animal Experience cover" loading="lazy"></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY REXTECH -->
+    <section class="ad-sec" id="why">
+        <div class="ad-wrap">
+            <div class="ad-head reveal">
+                <span class="ad-pill">Why Choose Rextech</span>
+                <h2 class="ad-h2">Built Right, <span class="ad-grad">Built to Last</span></h2>
+            </div>
+            <div class="ad-why">
+                <article class="ad-glass why-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-cube" />
+                        </svg></span>
+                    <div>
+                        <h3>Real-Time 3D Expertise</h3>
+                        <p>Optimised assets and smooth frame rates.</p>
+                    </div>
+                </article>
+                <article class="ad-glass why-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-headset" />
+                        </svg></span>
+                    <div>
+                        <h3>AR &amp; VR Under One Roof</h3>
+                        <p>One team for every reality.</p>
+                    </div>
+                </article>
+                <article class="ad-glass why-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-phone" />
+                        </svg></span>
+                    <div>
+                        <h3>Multi-Device Reach</h3>
+                        <p>Headsets, phones and the web.</p>
+                    </div>
+                </article>
+                <article class="ad-glass why-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-bolt" />
+                        </svg></span>
+                    <div>
+                        <h3>Performance First</h3>
+                        <p>Comfortable, low-latency experiences.</p>
+                    </div>
+                </article>
+                <article class="ad-glass why-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-code" />
+                        </svg></span>
+                    <div>
+                        <h3>Custom Development</h3>
+                        <p>Tailored to your goals — no templates.</p>
+                    </div>
+                </article>
+                <article class="ad-glass why-card reveal"><span class="ad-icon sm"><svg class="stk">
+                            <use href="#i-support" />
+                        </svg></span>
+                    <div>
+                        <h3>Post-Launch Support</h3>
+                        <p>We stay with you after go-live.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="ad-final">
+        <div class="ad-wrap">
+            <div class="ad-final-box reveal">
+                <h2>Ready to Go Immersive? <span class="ad-grad">Let's Build It.</span></h2>
+                <p>Bring your idea to life in AR, VR or mixed reality with Rextech Studios.</p>
+                <a href="/contact/" class="btn btn-primary">Discuss Your Project →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div>
+                <img src="/assets/images/rextech png logo for web.png" alt="Rextech Studios" class="footer-logo">
+                <p class="footer-tagline">Building next-generation games, AR/VR, and apps from India.</p>
+            </div>
+            <div class="footer-cols">
+                <div class="footer-col">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/portfolio/">Portfolio</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Social</h4>
+                    <ul>
+                        <li><a href="https://x.com/RextechStu4530" target="_blank" rel="noopener">Twitter (X)</a></li>
+                        <li><a href="https://www.instagram.com/rextech_studios/" target="_blank"
+                                rel="noopener">Instagram</a></li>
+                        <li><a href="https://www.youtube.com/@Rextechstudiosofficial" target="_blank"
+                                rel="noopener">YouTube</a></li>
+                        <li><a href="https://www.linkedin.com/company/rextech-studios/" target="_blank"
+                                rel="noopener">LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <div class="footer-contact">
+                        <p><a href="tel:+919562965493">+91 95629 65493</a></p>
+                        <p><a href="mailto:info@rextechstudios.com">info@rextechstudios.com</a></p>
+                        <p>Vismaya 8th Floor, AVGC Arena,<br>Phase 1 Infopark, Kakkanad<br>Ernakulam, Kerala 682042
+                            India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">India, Australia | Serving Clients Worldwide</span>
+            <span class="footer-rights">© 2023–2026 All rights reserved</span>
+        </div>
+    </footer>
+
+    <script src="/assets/main.js?v=2"></script>
+    <script>
+        /* Development Process: one-time sequenced intro (CSS-driven, triggered by IntersectionObserver) */
+        (function () {
+            var sec = document.getElementById('process');
+            if (!sec || !('IntersectionObserver' in window) ||
+                (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+            sec.classList.add('pp-armed');
+            var io = new IntersectionObserver(function (entries) {
+                if (!entries[0].isIntersecting) return;
+                sec.classList.add('pp-play');
+                io.disconnect();
+            }, { threshold: 0.25 });
+            io.observe(sec);
+        })();
+    </script>
+    <script>
+        /* Word-by-word reveal for the Android / iOS platform cards */
+        (function () {
+            var cards = document.querySelectorAll('.plat-card[data-wr]');
+            if (!cards.length || !('IntersectionObserver' in window)) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            var WORD = 65, ROW = 90, CARD_GAP = 200; // ms
+
+            function splitWords(el, state) {
+                Array.prototype.slice.call(el.childNodes).forEach(function (node) {
+                    if (node.nodeType === 3) {
+                        var frag = document.createDocumentFragment();
+                        node.textContent.split(/(\s+)/).forEach(function (part) {
+                            if (!part) return;
+                            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+                            var w = document.createElement('span');
+                            w.className = 'wr-word';
+                            w.textContent = part;
+                            w.style.setProperty('--wd', (state.t += WORD) + 'ms');
+                            frag.appendChild(w);
+                        });
+                        node.parentNode.replaceChild(frag, node);
+                    } else if (node.nodeType === 1) {
+                        splitWords(node, state);
+                    }
+                });
+            }
+
+            cards.forEach(function (card, i) {
+                var state = { t: i * CARD_GAP - WORD };
+                splitWords(card.querySelector('h3'), state);       // heading, then subtitle (<small>)
+                state.t += 120;                                    // short beat before the list
+                card.querySelectorAll('.plat-list li').forEach(function (li) {
+                    li.classList.add('wr-row');
+                    li.style.setProperty('--wd', state.t + 'ms');
+                    state.t += ROW;
+                });
+                card.classList.add('wr-ready');
+            });
+
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) { e.target.classList.add('wr-in'); io.unobserve(e.target); }
+                });
+            }, { threshold: 0.2 });
+            cards.forEach(function (c) { io.observe(c); });
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+/* AR/VR Development service page — extends app-dev.css */
+.vr-hero-img { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; object-fit: contain; animation: adFloatA 8s ease-in-out infinite; filter: drop-shadow(0 0 40px rgba(129, 74, 200, 0.55)); }
+.vr-stage-glow { position: absolute; left: 50%; top: 50%; width: 75%; height: 75%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(129, 74, 200, 0.45), transparent 65%); filter: blur(36px); animation: adPulse 5s ease-in-out infinite; }
+
+.vr-plat { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.vr-plat .plat-card { padding: 32px 28px; }
+
+.vr-tech { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 44px; }
+.vr-tech span { padding: 9px 18px; border-radius: 999px; font-family: var(--fh); font-size: 14px; font-weight: 600; color: var(--w75); background: rgba(129, 74, 200, 0.12); border: 1px solid rgba(129, 74, 200, 0.45); transition: border-color 0.3s, color 0.3s; }
+.vr-tech span:hover { color: #fff; border-color: rgba(223, 122, 254, 0.75); }
+
+.vr-case { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); overflow: hidden; border-radius: 28px; }
+.vr-case:hover { transform: none; }
+.vr-case-img { position: relative; min-height: 340px; background: #05030a; }
+.vr-case-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.vr-case-body { padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+.vr-case-body h3 { font-family: var(--fh); font-size: clamp(26px, 3vw, 36px); font-weight: 600; letter-spacing: -0.04em; color: var(--white); margin-bottom: 12px; }
+.vr-case-body p { font-family: var(--fh); font-size: 16px; font-weight: 500; line-height: 1.6; color: var(--w50); margin-bottom: 24px; }
+
+#process .ad-steps { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+#process .ad-steps::before { left: 8.5%; right: 8.5%; }
+
+@media (max-width: 1100px) {
+  .vr-plat { grid-template-columns: minmax(0, 1fr); }
+  #process .ad-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 860px) {
+  .vr-case { grid-template-columns: minmax(0, 1fr); }
+  .vr-case-img { min-height: 240px; }
+  .vr-case-body { padding: 32px 26px; }
+}
+@media (max-width: 760px) {
+  #process .ad-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) { .vr-hero-img, .vr-stage-glow { animation: none !important; } }
+
+/* Featured project cards */
+.vr-feat { text-decoration: none; color: inherit; }
+.vr-feat .feat-stage { height: 250px; margin: 0 -28px; align-items: stretch; }
+.vr-feat .feat-stage::before { display: none; }
+.vr-feat .feat-stage img { width: 100%; height: 100%; object-fit: cover; display: block; border-top: 1px solid rgba(129, 74, 200, 0.4); transition: transform 0.5s var(--ease); }
+.vr-feat:hover .feat-stage img { transform: scale(1.05); }
+.vr-feat .feat-stage { overflow: hidden; }
+
+/* Align image rows across cards regardless of title/description length */
+.ad-feat:has(.vr-feat) { grid-template-rows: auto; }
+.vr-feat { display: grid; grid-template-rows: auto 250px; grid-row: span 2; row-gap: 0; }
+@supports (grid-template-rows: subgrid) {
+  .ad-feat:has(.vr-feat) { grid-auto-rows: auto 250px; }
+  .vr-feat { grid-template-rows: subgrid; }
+}
+.vr-feat .feat-top { margin-bottom: 0; padding-bottom: 20px; }
+.vr-feat .feat-stage { margin-top: 0; }
